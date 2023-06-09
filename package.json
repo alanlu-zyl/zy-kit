@@ -1,6 +1,8 @@
 {
   "private": true,
   "packageManager": "pnpm@8.6.0",
+  "author": "Alan Lu <alanlu.zyl@gmail.com>",
+  "license": "MIT",
   "engines": {
     "node": ">=18.16.0",
     "npm": "use pnpm please!",
@@ -8,7 +10,24 @@
     "pnpm": ">=8.6.0"
   },
   "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "commit": "pnpm czg",
     "preinstall": "npx -y only-allow pnpm"
   },
-  "license": "MIT"
+  "devDependencies": {
+    "@commitlint/cli": "^17.6.5",
+    "@commitlint/config-conventional": "^17.6.5",
+    "@github/markdownlint-github": "^0.4.1",
+    "cz-git": "^1.6.1",
+    "czg": "^1.6.1",
+    "eslint": "^8.42.0",
+    "eslint-config-custom": "workspace:*",
+    "lint-staged": "^13.2.2",
+    "markdownlint-cli2": "^0.7.1",
+    "markdownlint-cli2-formatter-pretty": "^0.0.4",
+    "prettier": "^2.8.8",
+    "simple-git-hooks": "^2.8.1"
+  }
 }

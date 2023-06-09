@@ -2,13 +2,17 @@
   "name": "@zy-kit/utils",
   "version": "0.0.0",
   "description": "utils",
+  "author": "Alan Lu <alanlu.zyl@gmail.com>",
+  "license": "MIT",
   "keywords": [
     "utils"
   ],
-  "license": "MIT",
-  "author": "Alan Lu <alanlu.zyl@gmail.com>",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "eslint-config-custom": "workspace:*",
+    "tsconfig": "workspace:*"
   }
 }

@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "packageManager": "pnpm@8.6.0",
+  "engines": {
+    "node": ">=18.16.0",
+    "npm": "use pnpm please!",
+    "yarn": "use pnpm please!",
+    "pnpm": ">=8.6.0"
+  },
+  "scripts": {
+    "preinstall": "npx -y only-allow pnpm"
+  },
+  "license": "MIT"
+}

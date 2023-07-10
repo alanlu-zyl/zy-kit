@@ -1,0 +1,9 @@
+node_modules
+dist
+public
+.vscode
+
+*.sh
+*.md
+*.woff
+*.ttf

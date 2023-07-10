@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "main": "index.cjs",
-  "dependencies": {
-    "@antfu/eslint-config": "^0.39.5",
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.39.7",
     "eslint-config-prettier": "^8.8.0",
-    "eslint-config-turbo": "^1.10.2"
+    "eslint-config-turbo": "^1.10.7"
   }
 }

@@ -1,6 +1,6 @@
 {
   "private": true,
-  "packageManager": "pnpm@8.6.0",
+  "packageManager": "pnpm@8.6.7",
   "author": "Alan Lu <alanlu.zyl@gmail.com>",
   "license": "MIT",
   "engines": {
@@ -13,21 +13,37 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
+    "preinstall": "npx -y only-allow pnpm",
+    "postinstall": "npx simple-git-hooks",
     "commit": "pnpm czg",
-    "preinstall": "npx -y only-allow pnpm"
+    "update": "pnpm update -r"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.6.5",
-    "@commitlint/config-conventional": "^17.6.5",
+    "@commitlint/cli": "^17.6.6",
+    "@commitlint/config-conventional": "^17.6.6",
     "@github/markdownlint-github": "^0.4.1",
-    "cz-git": "^1.6.1",
-    "czg": "^1.6.1",
-    "eslint": "^8.42.0",
+    "cz-git": "^1.7.0",
+    "czg": "^1.7.0",
+    "eslint": "^8.44.0",
     "eslint-config-custom": "workspace:*",
-    "lint-staged": "^13.2.2",
+    "lint-staged": "^13.2.3",
     "markdownlint-cli2": "^0.7.1",
     "markdownlint-cli2-formatter-pretty": "^0.0.4",
+    "postcss": "^8.4.25",
+    "postcss-html": "^1.5.0",
+    "postcss-scss": "^4.0.6",
     "prettier": "^2.8.8",
-    "simple-git-hooks": "^2.8.1"
+    "sass": "^1.63.6",
+    "simple-git-hooks": "^2.8.1",
+    "stylelint": "^15.10.1",
+    "stylelint-config-recess-order": "^4.2.0",
+    "stylelint-config-recommended-vue": "^1.4.0",
+    "stylelint-config-standard-scss": "^9.0.0",
+    "typescript": "5.1.6",
+    "vite": "^4.4.2"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged",
+    "commit-msg": "pnpm commitlint --edit $1"
   }
 }

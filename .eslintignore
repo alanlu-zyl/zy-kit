@@ -1,6 +1,17 @@
 node_modules
 dist
-coverage
+public
+.vscode
 
-**/__tests__/**
-.cache/
+*.sh
+*.md
+*.woff
+*.ttf
+
+.commitlintrc.cjs
+.eslintrc.cjs
+.lintstagedrc.cjs
+.markdownlint-cli2.cjs
+.prettierrc.cjs
+.stylelintrc.cjs
+

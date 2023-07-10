@@ -21,5 +21,3 @@ max_line_length = off
 
 [*.{yaml,yml,conf}]
 indent_size = 2
-
-

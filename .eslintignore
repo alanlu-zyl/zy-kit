@@ -12,6 +12,7 @@ public
 .eslintrc.cjs
 .lintstagedrc.cjs
 .markdownlint-cli2.cjs
+.postcssrc.cjs
 .prettierrc.cjs
 .stylelintrc.cjs
 

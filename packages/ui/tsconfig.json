@@ -1,5 +1,10 @@
 {
   "extends": "tsconfig/base.json",
-  "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["dist", "build", "node_modules"]
+  "compilerOptions": {
+    "plugins": [{ "name": "ts-lit-plugin" }],
+    "outDir": "./types",
+    "rootDir": "./src",
+    "experimentalDecorators": true
+  },
+  "include": ["src/**/*.ts"]
 }

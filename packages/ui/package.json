@@ -7,12 +7,30 @@
   "keywords": [
     "ui"
   ],
-  "main": "index.js",
+  "main": "dist/index.es.js",
+  "exports": {
+    ".": "./dist/index.es.js"
+  },
+  "types": "types/index.d.ts",
+  "files": [
+    "dist",
+    "types"
+  ],
   "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
     "lint": "eslint"
+  },
+  "dependencies": {
+    "lit": "^3.0.0-pre.0",
+    "lit-html": "^3.0.0-pre.0",
+    "lit-element": "^4.0.0-pre.0",
+    "@lit/reactive-element": "^2.0.0-pre.0"
   },
   "devDependencies": {
     "eslint-config-custom": "workspace:*",
+    "ts-lit-plugin": "^1.2.1",
     "tsconfig": "workspace:*"
   }
 }

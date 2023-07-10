@@ -8,7 +8,7 @@ module.exports = {
   // 是否格式化一些文件中嵌入的程式碼片段的風格（auto|off;默認auto）
   embeddedLanguageFormatting: 'auto',
   // 指定 HTML 檔案的空格敏感度 (css|strict|ignore;默認css)
-  htmlWhitespaceSensitivity: 'strict',
+  htmlWhitespaceSensitivity: 'css',
   // 當檔案已經被 Prettier 格式化之後，是否在檔案頂部插入一個特殊的 @format 標記，默認false
   insertPragma: false,
   // 在 JSX 中使用單引號替代雙引號，默認false

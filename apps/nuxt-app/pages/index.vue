@@ -3,8 +3,6 @@ definePageMeta({
   title: 'My home page',
 })
 
-const route = useRoute()
-
 const count = ref(0)
 const increment = () => count.value++
 
@@ -19,26 +17,28 @@ const show = ref(false)
     <div>{{ count }}</div>
     <button @click="increment">increment</button>
 
+    <ZyButton>123</ZyButton>
+
     <hr />
-    <Comments />
+    <ZyComments />
     <hr />
     <button v-if="!show" @click="show = true">Show List</button>
-    <LazyComments v-if="show" />
+    <LazyZyComments v-if="show" />
 
     <hr />
     <!-- This renders the "span" element on the server side -->
     <ClientOnly fallback-tag="span">
       <!-- this component will only be rendered on client side -->
-      <Comments />
+      <ZyComments />
       <template #fallback>
         <!-- this will be rendered on server side -->
         <p>Loading comments...</p>
       </template>
 
-      <Form></Form>
+      <ZyForm></ZyForm>
 
-      <Form></Form>
-      <Form></Form>
+      <ZyForm></ZyForm>
+      <ZyForm></ZyForm>
     </ClientOnly>
 
     <hr />

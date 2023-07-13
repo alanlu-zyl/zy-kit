@@ -1,5 +1,5 @@
 packages:
-  - 'apps/*'
-  - 'docs'
+  - 'apps/**'
   - 'packages/**'
+  - 'docs'
   - '!**/__tests__/**'

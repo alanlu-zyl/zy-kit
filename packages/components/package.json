@@ -1,11 +1,16 @@
 {
-  "name": "nuxt-app",
-  "private": true,
+  "name": "@zy-kit/components",
+  "version": "0.0.0",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
+  },
+  "main": "index.ts",
+  "module": "index.ts",
+  "peerDependencies": {
+    "vue": "latest"
   }
 }

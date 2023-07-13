@@ -1,0 +1,9 @@
+{
+  "name": "markdownlint-config-custom",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.cjs",
+  "devDependencies": {
+    "@github/markdownlint-github": "^0.4.1"
+  }
+}

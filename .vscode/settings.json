@@ -15,5 +15,8 @@
   "stylelint.validate": ["css", "less", "postcss", "sass", "scss", "vue", "html"],
   "css.validate": false,
   "less.validate": false,
-  "scss.validate": false
+  "scss.validate": false,
+  "cSpell.words": [
+    "Nuxt"
+  ]
 }

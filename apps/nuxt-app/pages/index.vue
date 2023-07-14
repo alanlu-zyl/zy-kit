@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { obj } from '@zy-kit/utils'
+
 definePageMeta({
   title: 'My home page',
 })
+console.log(obj)
 
 const count = ref(0)
 const increment = () => count.value++

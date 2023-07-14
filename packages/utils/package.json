@@ -7,9 +7,16 @@
   "keywords": [
     "utils"
   ],
-  "main": "index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "lint": "eslint"
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint . --ext .ts"
   },
   "devDependencies": {
     "eslint-config-custom": "workspace:*",

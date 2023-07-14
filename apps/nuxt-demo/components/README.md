@@ -96,13 +96,13 @@ If you want to use the Vue `<component :is="someComputedComponent">` syntax, the
 For example:
 
 ```vue
-<template>
-  <component :is="clickable ? MyButton : 'div'" />
-</template>
-
 <script setup>
 const MyButton = resolveComponent('MyButton')
 </script>
+
+<template>
+  <component :is="clickable ? MyButton : 'div'" />
+</template>
 ```
 
 ::alert{type=warning}
@@ -381,7 +381,7 @@ Imagine a directory structure like this:
 Then in `awesome-ui/nuxt.js` you can use the `components:dirs` hook:
 
 ```ts
-import { defineNuxtModule, createResolver } from '@nuxt/kit'
+import { createResolver, defineNuxtModule } from '@nuxt/kit'
 
 export default defineNuxtModule({
   hooks: {

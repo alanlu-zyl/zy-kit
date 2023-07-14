@@ -8,8 +8,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
-  "main": "index.ts",
-  "module": "index.ts",
+  "main": "nuxt.ts",
+  "module": "nuxt.ts",
   "peerDependencies": {
     "vue": "latest"
   }

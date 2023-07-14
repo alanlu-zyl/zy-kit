@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import Icon from '../Icon/Icon.vue'
+
 defineProps<{
   to?: string
   icon?: string

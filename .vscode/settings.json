@@ -9,6 +9,10 @@
     "source.fixAll.markdownlint": true
   },
 
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
+
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "vue"],
 
   "stylelint.enable": true,
@@ -25,5 +29,5 @@
   "i18n-ally.localesPaths": ["apps/i18n"],
   "i18n-ally.keystyle": "nested",
 
-  "cSpell.words": ["Nuxt"]
+  "cSpell.words": ["formkit", "nuxt", "persistedstate", "pinia"]
 }

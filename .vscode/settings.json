@@ -16,7 +16,14 @@
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
-  "cSpell.words": [
-    "Nuxt"
-  ]
+
+  "i18n-ally.sourceLanguage": "zh",
+  "i18n-ally.displayLanguage": "zh",
+  "i18n-ally.localeCountryMap": {
+    "zh": "tw" // 將 zh 語系的國旗改為台灣
+  },
+  "i18n-ally.localesPaths": ["apps/i18n"],
+  "i18n-ally.keystyle": "nested",
+
+  "cSpell.words": ["Nuxt"]
 }

@@ -1,6 +1,8 @@
 {
   "name": "@zy-kit/components",
   "version": "0.0.0",
+  "main": "nuxt.ts",
+  "module": "nuxt.ts",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -8,8 +10,6 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
-  "main": "nuxt.ts",
-  "module": "nuxt.ts",
   "peerDependencies": {
     "vue": "latest"
   }

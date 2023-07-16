@@ -36,7 +36,7 @@ console.log(colorMode.preference)
     <Icon name="🚀" />
     <template #footer>
       <div class="text-center p-4 op-50">
-        <p>{{ $t('welcome') }}</p>
+        <p class="rotate-me">{{ $t('welcome') }}</p>
         <form>
           <select v-model="locale">
             <option value="zh">zh</option>
@@ -58,12 +58,19 @@ console.log(colorMode.preference)
   </NuxtLayout>
 </template>
 
-<style>
+<style lang="scss">
 html {
   font-family: Oxygen, sans-serif;
 }
 
-body {
+h2 {
+  z-index: $z-index;
+}
+
+div {
+  @extend %center-image;
+  @include fluid-type(font-size, 320px, 1366px, 14px, 18px);
+
   color: rgb(0 0 0 / 80%);
   background-color: #fff;
 }

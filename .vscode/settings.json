@@ -29,5 +29,17 @@
   "i18n-ally.localesPaths": ["apps/i18n"],
   "i18n-ally.keystyle": "nested",
 
-  "cSpell.words": ["formkit", "nuxt", "persistedstate", "pinia"]
+  "cSpell.words": [
+    "antfu",
+    "commitlint",
+    "formkit",
+    "nuxt",
+    "nuxtjs",
+    "persistedstate",
+    "pinia",
+    "preinstall",
+    "stylelint",
+    "tsup",
+    "vueuse"
+  ]
 }

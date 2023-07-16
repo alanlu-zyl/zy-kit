@@ -1,0 +1,20 @@
+{
+  "name": "@zy-kit/scss",
+  "version": "0.0.0",
+  "description": "scss",
+  "author": "Alan Lu <alanlu.zyl@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "scss"
+  ],
+  "main": "dist/main.css",
+  "module": "src/main.scss",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "dev": "sass --watch --update --style=expanded src:dist",
+    "build": "sass --no-source-map --style=compressed src:dist"
+  }
+}

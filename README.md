@@ -47,7 +47,3 @@
 ## Docs
 
 ## Packages
-
-### ui
-
-### utils

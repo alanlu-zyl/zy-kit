@@ -4,7 +4,7 @@
   "private": true,
   "main": "index.cjs",
   "devDependencies": {
-    "@antfu/eslint-config": "^0.39.7",
+    "@antfu/eslint-config": "^0.39.8",
     "eslint-config-prettier": "^8.8.0",
     "eslint-config-turbo": "^1.10.7"
   }

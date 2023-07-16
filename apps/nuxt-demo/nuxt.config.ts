@@ -42,6 +42,22 @@ export default defineNuxtConfig({
   imports: {
     dirs: ['stores'],
   },
+  css: [
+    // SCSS file in the project
+    '@zy-kit/scss', // you should add main.scss somewhere in your app
+  ],
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@use "@zy-kit/scss/src/abstracts" as *;',
+        },
+      },
+    },
+  },
+  typescript: {
+    typeCheck: true,
+  },
   app: {
     head: {
       charset: 'utf-8',

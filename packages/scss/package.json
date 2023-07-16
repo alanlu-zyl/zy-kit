@@ -14,7 +14,7 @@
     "src"
   ],
   "scripts": {
-    "dev": "sass --watch --update --style=expanded src:dist",
-    "build": "sass --no-source-map --style=compressed src:dist"
+    "build": "sass --no-source-map --style=compressed src:dist",
+    "dev": "sass --watch --update --style=expanded src:dist"
   }
 }

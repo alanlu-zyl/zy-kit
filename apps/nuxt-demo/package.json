@@ -6,6 +6,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
+    "lint": "eslint **/*.{js,jsx,ts,tsx,vue}",
     "postinstall": "nuxt prepare"
   }
 }

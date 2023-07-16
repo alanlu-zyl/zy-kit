@@ -26,13 +26,14 @@
   "i18n-ally.localeCountryMap": {
     "zh": "tw" // 將 zh 語系的國旗改為台灣
   },
-  "i18n-ally.localesPaths": ["apps/i18n"],
+  "i18n-ally.localesPaths": ["apps/**/locales"],
   "i18n-ally.keystyle": "nested",
 
   "cSpell.words": [
     "antfu",
     "commitlint",
     "formkit",
+    "intlify",
     "nuxt",
     "nuxtjs",
     "persistedstate",
@@ -40,6 +41,7 @@
     "preinstall",
     "stylelint",
     "tsup",
+    "unplugin",
     "vueuse"
   ]
 }

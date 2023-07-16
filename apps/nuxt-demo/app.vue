@@ -5,6 +5,10 @@ const appConfig = useAppConfig()
 
 console.log(appConfig.theme)
 
+const { $hello } = useNuxtApp()
+
+console.log($hello('world'))
+
 const { locale } = useI18n()
 
 const colorMode = useColorMode()

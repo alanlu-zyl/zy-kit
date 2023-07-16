@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['@antfu', 'turbo', 'prettier'],
+  extends: ['turbo', '@antfu', 'prettier'],
   rules: {
     'no-console': 'off',
     'antfu/if-newline': 'off',

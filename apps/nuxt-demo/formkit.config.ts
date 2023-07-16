@@ -1,5 +1,5 @@
-import { zhTW } from '@formkit/i18n'
 import { defineFormKitConfig } from '@formkit/vue'
+import { zhTW } from '@formkit/i18n'
 import { genesisIcons } from '@formkit/icons'
 
 // import { createProPlugin, inputs } from '@formkit/pro'

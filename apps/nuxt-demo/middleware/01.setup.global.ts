@@ -1,4 +1,6 @@
+/* eslint-disable n/prefer-global/process */
 /* eslint-disable no-useless-return */
+
 export default defineNuxtRouteMiddleware((_to, _form) => {
   // skip middleware on server
   if (process.server) return

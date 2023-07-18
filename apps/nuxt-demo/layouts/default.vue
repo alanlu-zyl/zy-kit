@@ -1,5 +1,11 @@
 <script setup lang="ts">
+import { appName } from '~/constants'
+
+const route = useRoute()
 useHead({
+  titleTemplate: (titleChunk) => {
+    return titleChunk ? `${titleChunk} - ${appName} ${route.meta.title}` : appName
+  },
   link: [{ rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css' }],
 })
 </script>

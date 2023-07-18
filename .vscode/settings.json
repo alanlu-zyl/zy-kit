@@ -9,17 +9,20 @@
     "source.fixAll.markdownlint": true
   },
 
-  "[markdown]": {
-    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
-  },
-
-  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "vue"],
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "html", "markdown", "json", "jsonc", "yaml"],
 
   "stylelint.enable": true,
   "stylelint.validate": ["css", "less", "postcss", "sass", "scss", "vue", "html"],
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
+  "files.associations": {
+    "*.css": "postcss"
+  },
+
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
 
   "i18n-ally.sourceLanguage": "zh",
   "i18n-ally.displayLanguage": "zh",

@@ -1,7 +1,9 @@
-/* eslint-disable n/prefer-global/process */
 /* eslint-disable no-useless-return */
+/* eslint-disable n/prefer-global/process */
 
-export default defineNuxtRouteMiddleware((_to, _form) => {
+export default defineNuxtRouteMiddleware((to, from) => {
+  console.log(`[全域中間件] to: ${to.path}, from: ${from.path}`)
+
   // skip middleware on server
   if (process.server) return
   // skip middleware on client side entirely

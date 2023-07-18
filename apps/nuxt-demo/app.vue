@@ -1,30 +1,27 @@
 <script setup lang="ts">
+import { appName } from '~/constants'
+
+useHead({
+  title: appName,
+  link: [
+    {
+      rel: 'stylesheet',
+      href: 'https://fonts.googleapis.com/css2?family=Oxygen&display=swap',
+    },
+  ],
+})
+
 const route = useRoute()
-
-const appConfig = useAppConfig()
-
-console.log(appConfig.theme)
-
-const { $hello } = useNuxtApp()
-
-console.log($hello('world'))
-
 const { locale } = useI18n()
-
-const colorMode = useColorMode()
-console.log(colorMode.preference)
 </script>
 
 <template>
   <NuxtLayout>
     <NuxtLoadingIndicator />
-    <NuxtPage />
 
     <template #nav>
       <nav class="flex align-center gap-4 p-4">
-        <el-button @click="ElMessage('hello')">button</el-button>
-        <ElButton :icon="ElIconEditPen" type="success">button</ElButton>
-        <LazyElButton type="warning">lazy button</LazyElButton>
+        <ElButton :icon="ElIconEditPen" type="success" @click="ElMessage('hello')">button</ElButton>
         <NuxtLink to="/" class="n-link-base"> Home </NuxtLink>
         <NuxtLink to="/about" class="n-link-base"> About </NuxtLink>
         <NuxtLink to="/parent" class="n-link-base"> Parent (index) </NuxtLink>
@@ -35,9 +32,9 @@ console.log(colorMode.preference)
         <button class="n-link-base" @click="$router.push(`/users-admin/static-${(Math.random() * 100).toFixed()}`)">Non-keyed child</button>
       </nav>
     </template>
-    <Icon name="nuxt" />
-    <Icon name="uil:github" color="black" />
-    <Icon name="🚀" />
+
+    <NuxtPage />
+
     <template #footer>
       <div class="text-center p-4 op-50">
         <p class="rotate-me">{{ $t('welcome') }}</p>

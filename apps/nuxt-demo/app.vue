@@ -13,6 +13,12 @@ useHead({
 
 const route = useRoute()
 const { locale } = useI18n()
+
+const runtimeConfig = useRuntimeConfig()
+// console.log(runtimeConfig)
+
+const appConfig = useAppConfig()
+// console.log(appConfig)
 </script>
 
 <template>

@@ -26,6 +26,7 @@ export default defineNuxtConfig({
     ['@pinia-plugin-persistedstate/nuxt', nuxtConfig.piniaPersistedstate],
     ['@nuxt/content', nuxtConfig.content],
     ['@nuxt/image', nuxtConfig.image],
+    '@nuxtjs/fontaine',
     ['@nuxtjs/color-mode', nuxtConfig.colorMode],
     ['@nuxtjs/i18n', nuxtConfig.i18n],
     ['nuxt-icon', nuxtConfig.nuxtIcon],
@@ -34,7 +35,9 @@ export default defineNuxtConfig({
 
   // https://nuxt.com/docs/api/configuration/nuxt-config#runtimeconfig
   runtimeConfig: {
-    apiSecret: 'apiSecret',
+    // The private keys which are only available server-side
+    apiSecret: '123',
+    // Keys within public are also exposed client-side
     public: {
       apiBase: '/api',
     },

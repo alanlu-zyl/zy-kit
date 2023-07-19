@@ -7,10 +7,10 @@ definePageMeta({
 <template>
   <div>
     <h2>[Button]</h2>
-    <Button>Button</Button>
+    <Button cls="m:50">Button</Button>
     <LazyButton>LazyButton</LazyButton>
     <ClientOnly>
-      <Button>ClientOnly</Button>
+      <Button intent="secondary">ClientOnly</Button>
       <template #fallback>
         <!-- this will be rendered on server side -->
         <p>Loading button...</p>

@@ -38,6 +38,7 @@ const { increment, decrement } = counterStore
     {{ $hello('world') }}
     {{ appConfig.theme }}
 
+    <ZyButton>12313</ZyButton>
     <div class="my-24 flex flex-col items-center">
       <span class="mt-4 text-2xl text-gray-600">回傳資料:</span>
       <p class="mt-4 text-3xl font-semibold text-blue-500">{{ data }}</p>

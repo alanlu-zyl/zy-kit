@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { CSSProvider } from '@master/css.vue'
+import config from '@zy-kit/master/master.css'
+
 const route = useRoute()
 
 useHead({
@@ -9,7 +12,7 @@ useHead({
 </script>
 
 <template>
-  <div>
+  <CSSProvider :config="config">
     <nav>
       <NuxtLink to="/">Home</NuxtLink>
       <NuxtLink to="/button">Button</NuxtLink>
@@ -18,5 +21,5 @@ useHead({
       <NuxtLink to="/input">Input</NuxtLink>
     </nav>
     <slot />
-  </div>
+  </CSSProvider>
 </template>

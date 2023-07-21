@@ -1,11 +1,10 @@
 import { type Config } from '@master/css'
-import btnClasses from './styles/btn'
+import styles from './styles'
 
-export default <Config>{
-  extends: [btnClasses],
+export const config: Config = {
+  extends: [...styles],
   classes: {},
   colors: {},
-  themes: {},
   rules: {},
   values: {},
   semantics: {},
@@ -15,3 +14,5 @@ export default <Config>{
   selectors: {},
   functions: {},
 }
+
+export default config

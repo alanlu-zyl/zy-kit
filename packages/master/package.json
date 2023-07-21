@@ -2,5 +2,13 @@
   "name": "@zy-kit/master",
   "version": "0.0.0",
   "main": "master.css.ts",
-  "module": "master.css.ts"
+  "scripts": {
+    "build": "ts-node scripts/build.ts && prettier ./dist/ --write",
+    "lint": "eslint . --ext .ts",
+    "extract": "mcss extract"
+  },
+  "devDependencies": {
+    "eslint-config-custom": "workspace:*",
+    "tsconfig": "workspace:*"
+  }
 }

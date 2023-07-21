@@ -1,0 +1,14 @@
+{
+  "name": "nuxt-base",
+  "type": "module",
+  "private": true,
+  "main": "./nuxt.config.ts",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "cleanup": "nuxt cleanup",
+    "postinstall": "nuxt prepare"
+  }
+}

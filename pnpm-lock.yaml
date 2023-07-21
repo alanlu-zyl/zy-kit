@@ -8,10 +8,16 @@ importers:
 
   .:
     dependencies:
+      '@master/css-extractor':
+        specifier: 2.0.0-beta.160
+        version: 2.0.0-beta.160
       '@master/css-extractor.vite':
         specifier: 2.0.0-beta.160
         version: 2.0.0-beta.160(vite@4.4.4)
       '@master/css-server.nitro':
+        specifier: 2.0.0-beta.160
+        version: 2.0.0-beta.160
+      '@master/css-validator':
         specifier: 2.0.0-beta.160
         version: 2.0.0-beta.160
       '@master/css.vue':
@@ -36,6 +42,9 @@ importers:
       '@formkit/nuxt':
         specifier: ^0.17.4
         version: 0.17.4(vue@3.3.4)
+      '@formkit/zod':
+        specifier: ^0.17.5
+        version: 0.17.5(zod@3.21.4)
       '@intlify/unplugin-vue-i18n':
         specifier: ^0.12.2
         version: 0.12.2(vue-i18n@9.3.0-beta.22)
@@ -54,6 +63,9 @@ importers:
       '@nuxtjs/fontaine':
         specifier: ^0.4.0
         version: 0.4.0
+      '@nuxtjs/google-fonts':
+        specifier: ^3.0.1
+        version: 3.0.1
       '@nuxtjs/i18n':
         specifier: 8.0.0-beta.13
         version: 8.0.0-beta.13(vue@3.3.4)
@@ -75,6 +87,9 @@ importers:
       '@zy-kit/components':
         specifier: workspace:*
         version: link:packages/components
+      '@zy-kit/config':
+        specifier: workspace:*
+        version: link:packages/config
       '@zy-kit/master':
         specifier: workspace:*
         version: link:packages/master
@@ -98,7 +113,7 @@ importers:
         version: 8.45.0
       eslint-config-custom:
         specifier: workspace:*
-        version: link:packages/@linter/eslint-config-custom
+        version: link:packages/linters/eslint-config-custom
       lint-staged:
         specifier: ^13.2.3
         version: 13.2.3
@@ -107,7 +122,7 @@ importers:
         version: 0.7.1
       markdownlint-config-custom:
         specifier: workspace:*
-        version: link:packages/@linter/markdownlint-config-custom
+        version: link:packages/linters/markdownlint-config-custom
       nuxt:
         specifier: ^3.6.3
         version: 3.6.3(@types/node@18.16.19)(eslint@8.45.0)(sass@1.63.6)(stylelint@15.10.1)(typescript@5.1.6)(vue-tsc@1.8.5)
@@ -128,7 +143,7 @@ importers:
         version: 2.8.8
       prettier-config-custom:
         specifier: workspace:*
-        version: link:packages/@linter/prettier-config-custom
+        version: link:packages/linters/prettier-config-custom
       sass:
         specifier: ^1.63.6
         version: 1.63.6
@@ -140,7 +155,7 @@ importers:
         version: 15.10.1
       stylelint-config-custom:
         specifier: workspace:*
-        version: link:packages/@linter/stylelint-config-custom
+        version: link:packages/linters/stylelint-config-custom
       tsup:
         specifier: ^7.1.0
         version: 7.1.0(postcss@8.4.26)(ts-node@10.9.1)(typescript@5.1.6)
@@ -154,9 +169,24 @@ importers:
         specifier: ^1.8.5
         version: 1.8.5(typescript@5.1.6)
 
+  apps/nuxt-base: {}
+
   apps/nuxt-demo: {}
 
-  packages/@linter/eslint-config-custom:
+  apps/nuxt-omo: {}
+
+  packages/components: {}
+
+  packages/config:
+    devDependencies:
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../linters/eslint-config-custom
+      tsconfig:
+        specifier: workspace:*
+        version: link:../linters/tsconfig
+
+  packages/linters/eslint-config-custom:
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^0.39.8
@@ -168,7 +198,7 @@ importers:
         specifier: ^1.10.7
         version: 1.10.7(eslint@8.45.0)
 
-  packages/@linter/markdownlint-config-custom:
+  packages/linters/markdownlint-config-custom:
     devDependencies:
       '@github/markdownlint-github':
         specifier: ^0.4.1
@@ -177,9 +207,9 @@ importers:
         specifier: ^0.0.4
         version: 0.0.4(markdownlint-cli2@0.7.1)
 
-  packages/@linter/prettier-config-custom: {}
+  packages/linters/prettier-config-custom: {}
 
-  packages/@linter/stylelint-config-custom:
+  packages/linters/stylelint-config-custom:
     devDependencies:
       postcss-html:
         specifier: ^1.5.0
@@ -197,11 +227,16 @@ importers:
         specifier: ^9.0.0
         version: 9.0.0(postcss@8.4.26)(stylelint@15.10.1)
 
-  packages/@linter/tsconfig: {}
+  packages/linters/tsconfig: {}
 
-  packages/components: {}
-
-  packages/master: {}
+  packages/master:
+    devDependencies:
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../linters/eslint-config-custom
+      tsconfig:
+        specifier: workspace:*
+        version: link:../linters/tsconfig
 
   packages/scss: {}
 
@@ -209,10 +244,10 @@ importers:
     devDependencies:
       eslint-config-custom:
         specifier: workspace:*
-        version: link:../@linter/eslint-config-custom
+        version: link:../linters/eslint-config-custom
       tsconfig:
         specifier: workspace:*
-        version: link:../@linter/tsconfig
+        version: link:../linters/tsconfig
 
 packages:
 
@@ -1648,6 +1683,12 @@ packages:
       '@formkit/utils': 0.17.4
     dev: true
 
+  /@formkit/core@0.17.5:
+    resolution: {integrity: sha512-BrtvKOfJ/W7Z2r25LiQC10hy+5TG+22Y57dpQrYdp3bMEziaXHwWxxreX9VgnADUXbwgxxhViEsexINWYsnKQw==}
+    dependencies:
+      '@formkit/utils': 0.17.5
+    dev: true
+
   /@formkit/dev@0.17.4:
     resolution: {integrity: sha512-uqpDOYN/s1hIWyk32HgwKEfczj94zFyePdx5RGJFMINnnh+cXI2ltZfkSXUqPcphOQ7RlTYYRyTebv8f4ZQmPA==}
     dependencies:
@@ -1730,6 +1771,10 @@ packages:
     resolution: {integrity: sha512-5xt4gJFqoRFR+/MklUlSeH6aJAebmVK8Fk/Y5wAE136fnx9i52HrXfsuQ6TNYOPiTvDTvtM/SVtvRjSu3qDBzw==}
     dev: true
 
+  /@formkit/utils@0.17.5:
+    resolution: {integrity: sha512-VhGdmuyXQKB6ceQeQx1pJ/TP+vCUG5+ZiXeKySuFItAjfk7euTwtalDgv1tXrgCtPwANr6KPMC3rPGsoHS9cSQ==}
+    dev: true
+
   /@formkit/validation@0.17.4:
     resolution: {integrity: sha512-O2pnZkV0+IVaCmhd6W3RbNFKMdZLVbIKPgywSNngmCahxKmMCCgyd91WmmHnQNRPrZo6VOKW7ZfKUGAApYtQAQ==}
     dependencies:
@@ -1757,6 +1802,15 @@ packages:
       - tailwindcss
       - unocss
       - windicss
+    dev: true
+
+  /@formkit/zod@0.17.5(zod@3.21.4):
+    resolution: {integrity: sha512-Cz6ci9YLUOIK/CfuiSSITY8gV10jgXWMOy0I+YHa7n7V0JDnhw2RPW45DWcsuWtcBkBYI4eGrHu5MxZ7GU6ryA==}
+    peerDependencies:
+      zod: ^3.0.0
+    dependencies:
+      '@formkit/core': 0.17.5
+      zod: 3.21.4
     dev: true
 
   /@github/markdownlint-github@0.4.1:
@@ -2513,6 +2567,17 @@ packages:
       ufo: 1.1.2
     transitivePeerDependencies:
       - encoding
+      - rollup
+      - supports-color
+    dev: true
+
+  /@nuxtjs/google-fonts@3.0.1:
+    resolution: {integrity: sha512-9W5jZhpJ4UTmiPebljdoxs+ju89rOBVD5gb0sPRe73BVXCUUv46lV2Q0ynPZPsnono5WlTB6nyZbOCECa7IWDQ==}
+    dependencies:
+      '@nuxt/kit': 3.6.3
+      google-fonts-helper: 3.3.0
+      pathe: 1.1.1
+    transitivePeerDependencies:
       - rollup
       - supports-color
     dev: true
@@ -6230,6 +6295,15 @@ packages:
 
   /globjoin@0.1.4:
     resolution: {integrity: sha512-xYfnw62CKG8nLkZBfWbhWwDw02CHty86jfPcc2cr3ZfeuK9ysoVPPEUxf21bAD/rWAgk52SuBrLJlefNy8mvFg==}
+    dev: true
+
+  /google-fonts-helper@3.3.0:
+    resolution: {integrity: sha512-aFEVbmaavTY6wN3m6jZaWXQHfakMy6XNqdWN8YzHqHWCGpGma91zp8MiWsyb5i8gXQXYeGUWegb9ca/Jf/Q7Yw==}
+    dependencies:
+      deepmerge: 4.3.1
+      hookable: 5.5.3
+      ofetch: 1.1.1
+      ufo: 1.1.2
     dev: true
 
   /gopd@1.0.1:
@@ -12551,6 +12625,10 @@ packages:
       archiver-utils: 2.1.0
       compress-commons: 4.1.1
       readable-stream: 3.6.2
+    dev: true
+
+  /zod@3.21.4:
+    resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
     dev: true
 
   /zwitch@2.0.4:

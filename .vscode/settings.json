@@ -9,6 +9,8 @@
     "source.fixAll.markdownlint": true
   },
 
+  "vue.codeActions.enabled": false,
+
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "html", "markdown", "json", "jsonc", "yaml"],
 
   "stylelint.enable": true,
@@ -32,19 +34,7 @@
   "i18n-ally.localesPaths": ["apps/**/locales"],
   "i18n-ally.keystyle": "nested",
 
-  "cSpell.words": [
-    "antfu",
-    "commitlint",
-    "formkit",
-    "intlify",
-    "nuxt",
-    "nuxtjs",
-    "persistedstate",
-    "pinia",
-    "preinstall",
-    "stylelint",
-    "tsup",
-    "unplugin",
-    "vueuse"
-  ]
+  "masterCSS.config": "packages/master/dist/master.css.cjs",
+
+  "cSpell.words": ["antfu", "commitlint", "formkit", "intlify", "nuxt", "nuxtjs", "persistedstate", "pinia", "preinstall", "stylelint", "tsup", "unplugin", "vueuse"]
 }

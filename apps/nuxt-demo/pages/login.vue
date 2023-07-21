@@ -8,7 +8,7 @@ const route = useRoute()
 async function handleEmailLogin() {
   // ...
 
-  navigateTo(route.query.redirect_to ?? '/')
+  navigateTo((route.query.redirect_to as string) ?? '/')
 }
 </script>
 

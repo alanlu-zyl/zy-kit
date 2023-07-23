@@ -10,6 +10,7 @@ export default defineNuxtConfig({
   modules: [
     //
     components,
+    ['@nuxtjs/i18n', nuxtConfig.i18n],
     ['@element-plus/nuxt', nuxtConfig.elementPlus],
     ['@nuxt/content', nuxtConfig.content],
   ],

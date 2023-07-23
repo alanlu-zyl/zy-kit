@@ -17,7 +17,7 @@
     "test": "turbo run test --parallel",
     "lint": "turbo run lint --parallel",
     "type-check": "turbo run type-check",
-    "dev": "turbo run dev",
+    "dev": "turbo run dev --concurrency=20",
     "preinstall": "npx -y only-allow pnpm",
     "postinstall": "npx simple-git-hooks",
     "commit": "pnpm czg",

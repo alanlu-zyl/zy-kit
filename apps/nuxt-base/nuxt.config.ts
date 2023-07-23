@@ -17,6 +17,7 @@ export default defineNuxtConfig({
 
   // https://nuxt.com/docs/api/configuration/nuxt-config#typescript
   typescript: {
+    includeWorkspace: true,
     // typeCheck: true,
   },
 

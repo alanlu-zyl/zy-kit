@@ -10,12 +10,8 @@ const { locale } = useI18n()
 </script>
 
 <template>
-  <CSSProvider>
-    <slot name="nav"> </slot>
-    <div class="mx:auto p:1x max-w:xl bg:white">
-      <slot />
-    </div>
-    <slot name="footer">
+  <div>
+    <slot name="nav">
       <form>
         <select v-model="locale">
           <option value="zh">zh</option>
@@ -25,6 +21,11 @@ const { locale } = useI18n()
       <div>
         Current route: <code>{{ route.path }}</code>
       </div>
+      <NuxtLink to="/login">Login</NuxtLink>
     </slot>
-  </CSSProvider>
+    <div class="mx:auto p:1x max-w:xl bg:white">
+      <slot />
+    </div>
+    <slot name="footer"> </slot>
+  </div>
 </template>

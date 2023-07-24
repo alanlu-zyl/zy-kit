@@ -27,7 +27,11 @@ import modal from './components/modal'
 import ratio from './components/ratio'
 import skeleton from './components/skeleton'
 import table from './components/table'
+import tabs from './components/tabs'
 import title from './components/title'
+
+// Components - formkit
+import formkit from './components/formkit'
 
 const extendsConfig: NonNullable<Config['extends']> = [
   obj.merge(
@@ -55,7 +59,10 @@ const extendsConfig: NonNullable<Config['extends']> = [
     ratio,
     skeleton,
     table,
-    title
+    tabs,
+    title,
+    // Components - formkit
+    formkit
   ),
 ]
 

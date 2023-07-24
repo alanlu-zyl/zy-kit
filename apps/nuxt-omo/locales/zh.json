@@ -1,9 +1,16 @@
 {
+  "omoMember": "OMO 會員",
+  "oldMember": "舊會員",
+  "omoMemberTransfer": "OMO 會員轉移",
   "oldMemberTransfer": "舊會員轉移",
-  "immediateTransfer": "立即轉移",
   "oldMemberLogin": "舊會員登入",
-  "phoneEmail": "手機/Email",
+  "immediateTransfer": "前往轉移",
+  "account": "手機/Email",
   "password": "密碼",
+  "rememberAccount": "記住帳號",
   "forgotPassword": "忘記密碼?",
-  "transferInstructions": "轉移說明"
+  "logIn": "登入",
+  "proceedToTransfer": "前往轉移",
+  "transferInstructions": "轉移說明",
+  "joinOMONow": "立即加入OMO會員"
 }

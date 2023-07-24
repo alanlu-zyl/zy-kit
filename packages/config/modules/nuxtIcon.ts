@@ -9,5 +9,7 @@ export const appConfig: CustomAppConfig['nuxtIcon'] = {
   class: 'icon', // default <Icon> class applied
   aliases: {
     nuxt: 'logos:nuxt-icon',
+    line: 'LineIcon',
+    fb: 'FBIcon',
   },
 }

@@ -1,9 +1,16 @@
 {
-  "oldMemberTransfer": "Old Member Transfer",
+  "omoMember": "OMO Member",
+  "oldMember": "Existing Member",
+  "omoMemberTransfer": "OMO 會員轉移",
+  "oldMemberTransfer": "Existing Member Transfer",
+  "oldMemberLogin": "Existing Member Login",
   "immediateTransfer": "Immediate Transfer",
-  "oldMemberLogin": "Old Member Login",
-  "phoneEmail": "Phone/Email",
+  "account": "Phone/Email",
   "password": "Password",
+  "rememberAccount": "Remember Account",
   "forgotPassword": "Forgot Password?",
-  "transferInstructions": "Transfer Instructions"
+  "logIn": "Log In",
+  "proceedToTransfer": "Proceed to Transfer",
+  "transferInstructions": "Transfer Instructions",
+  "joinOMONow": "Join OMO Now"
 }

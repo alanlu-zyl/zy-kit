@@ -51,6 +51,11 @@ const [zodPlugin, submitHandler] = createZodPlugin(zodSchema, async (formData) =
   alert('Form was submitted!')
   console.log(formData)
 })
+
+// onMounted(async () => {
+//   const [{ initRuntime }, { default: config }] = await Promise.all([import('@master/css'), import('@zy-kit/master')])
+//   initRuntime(config)
+// })
 </script>
 
 <template>

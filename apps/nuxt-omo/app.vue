@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { DefaultConfigOptions } from '@formkit/vue'
+
 useHead({
   bodyAttrs: {
     class: 'normal',
@@ -11,24 +13,29 @@ useSeoMeta({
   ogDescription: 'description',
   // ogImage: 'https://example.com/image.png',
 })
+
+const { locale } = useI18n()
+
+const config: DefaultConfigOptions = inject(Symbol.for('FormKitConfig'))!
+watch(locale, (newVal) => {
+  config.locale = newVal
+})
 </script>
 
 <template>
-  <NuxtLayout>
-    <NuxtLoadingIndicator />
-
-    <NuxtPage />
-  </NuxtLayout>
+  <CSSProvider>
+    <NuxtLayout>
+      <NuxtLoadingIndicator />
+      <NuxtPage />
+    </NuxtLayout>
+  </CSSProvider>
 </template>
 
 <style lang="scss">
 :root {
   --zh-font-family: 'Noto Sans TC';
   --en-font-family: 'Inter';
-
-  /* Formkit */
-  --fk-bg-submit: #fbc700;
-  --fk-max-width-input: 100%;
+  --fk-font-family: var(--zh-font-family), var(--en-font-family);
 }
 
 body {

@@ -25,9 +25,7 @@ export default defineNuxtConfig({
     families: {
       'Noto+Sans+TC': {
         // weights
-        wght: [100, 400],
-        // italic
-        ital: [100],
+        wght: [400, 700],
       },
       Inter: true,
     },

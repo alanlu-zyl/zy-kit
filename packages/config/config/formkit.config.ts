@@ -1,10 +1,14 @@
-import { defineFormKitConfig } from '@formkit/vue'
+import { createInput, defineFormKitConfig } from '@formkit/vue'
 import { zhTW } from '@formkit/i18n'
 import { genesisIcons } from '@formkit/icons'
 
 // import { createProPlugin, inputs } from '@formkit/pro'
 
 import '@formkit/themes/genesis'
+
+import { email_phone } from '../formkit/rules'
+import OneTimePassword from '../formkit/OneTimePassword.vue'
+import { floatingLabelTextInput } from '../formkit/floatingLabelTextInput'
 
 export default defineFormKitConfig(() => {
   // here we can access `useRuntimeConfig` because
@@ -16,10 +20,36 @@ export default defineFormKitConfig(() => {
 
   return {
     // plugins: [pro],
-    locales: { zhTW },
-    locale: 'zhTW',
+    locales: { zh: zhTW },
+    locale: 'zh',
 
+    // 圖示
     icons: { ...genesisIcons },
+
+    rules: { email_phone },
+
+    messages: {
+      en: {
+        validation: {
+          email_phone({ name }) {
+            return ` ${name} Please enter an email or phone number.`
+          },
+        },
+      },
+      zh: {
+        validation: {
+          email_phone({ name }) {
+            return ` ${name} 請輸入信箱或手機號碼`
+          },
+        },
+      },
+    },
+
+    // https://formkit.com/guides/create-a-custom-input
+    inputs: {
+      otp: createInput(OneTimePassword, { props: ['digits'] }),
+      floatingLabelTextInput,
+    },
 
     // https://formkit.com/essentials/styling#using-generateclasses-from-formkitthemes
     config: {

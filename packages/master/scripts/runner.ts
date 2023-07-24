@@ -1,3 +1,3 @@
-import cls from '../styles/layouts/normal'
+import cls from '../styles/components/formkit'
 
 console.log(cls.classes)

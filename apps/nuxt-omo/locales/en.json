@@ -1,4 +1,9 @@
 {
-  "hello": "Hello",
-  "welcome": "Welcome"
+  "oldMemberTransfer": "Old Member Transfer",
+  "immediateTransfer": "Immediate Transfer",
+  "oldMemberLogin": "Old Member Login",
+  "phoneEmail": "Phone/Email",
+  "password": "Password",
+  "forgotPassword": "Forgot Password?",
+  "transferInstructions": "Transfer Instructions"
 }

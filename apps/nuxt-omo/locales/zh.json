@@ -1,4 +1,9 @@
 {
-  "hello": "你好",
-  "welcome": "歡迎"
+  "oldMemberTransfer": "舊會員轉移",
+  "immediateTransfer": "立即轉移",
+  "oldMemberLogin": "舊會員登入",
+  "phoneEmail": "手機/Email",
+  "password": "密碼",
+  "forgotPassword": "忘記密碼?",
+  "transferInstructions": "轉移說明"
 }

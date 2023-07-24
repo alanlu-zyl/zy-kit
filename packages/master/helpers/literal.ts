@@ -54,7 +54,7 @@ function group(config: {
       try {
         otherGroup.push(
           group({
-            parent: r[1],
+            parent: r[1] || parent,
             selector: _selector,
             cls: r[2].split(';').join(' '),
             mq: _mq,

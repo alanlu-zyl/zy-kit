@@ -35,7 +35,29 @@ merge.withOptions = (options: { mergeArrays: boolean }, ...objects: any) => {
   return result
 }
 
+function hyphenate(str): string {
+  return str.replace(/\B([A-Z])/g, '-$1').toLowerCase()
+}
+
+/**
+ * 从props配置中获取默认值
+ * @param props
+ * @param overrideProps
+ * @returns
+ */
+export function getDefaultFromProps<T = Record<string, any>>(props: Record<string, any>, overrideProps: T): T | Record<string, any> {
+  const defaults = Object.entries(props).reduce((temp, [key, value]) => {
+    temp[key] = value?.default
+    return temp
+  }, {})
+  return {
+    ...defaults,
+    ...overrideProps,
+  }
+}
+
 export const obj = {
   isObject,
   merge,
+  getDefaultFromProps,
 }

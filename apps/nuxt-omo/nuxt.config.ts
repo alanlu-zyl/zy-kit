@@ -15,7 +15,6 @@ export default defineNuxtConfig({
   extends: ['../nuxt-base'],
   modules: [
     ['@nuxtjs/i18n', nuxtConfig.i18n],
-    ['@element-plus/nuxt', nuxtConfig.elementPlus],
     // fonts
     '@nuxtjs/google-fonts',
     '@nuxtjs/fontaine',

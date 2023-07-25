@@ -1,9 +1,10 @@
-<script setup lang="ts">
+<script lang="tsx" setup>
 import type { FormKitSchemaDefinition } from '@formkit/core'
 import type { ZodTypeAny } from 'zod'
 
 import { createZodPlugin } from '@formkit/zod'
 import { z } from 'zod'
+import Dialog from '@/components/Dialog.vue'
 
 useHead({
   bodyAttrs: {
@@ -52,10 +53,48 @@ const [zodPlugin, submitHandler] = createZodPlugin(zodSchema, async (formData) =
   console.log(formData)
 })
 
-// onMounted(async () => {
-//   const [{ initRuntime }, { default: config }] = await Promise.all([import('@master/css'), import('@zy-kit/master')])
-//   initRuntime(config)
-// })
+const createDialog = useCommandComponent(Dialog)
+let myDialog: ReturnType<typeof createDialog>
+
+onMounted(() => {
+  myDialog = createDialog({
+    title: 'test',
+    component: () => <input type="text" />,
+    onConfirm: () => {
+      console.log('onConfirm')
+
+      const myDialog2 = createDialog({
+        title: 'test222',
+        destroyOnClose: true,
+        component: () => (
+          <div>
+            <h1>12323</h1>
+            <button></button>
+          </div>
+        ),
+        footer: () => (
+          <div>
+            <button class="btn" onClick={myDialog2.close}>
+              OK
+            </button>
+          </div>
+        ),
+        onConfirm: () => {
+          console.log('onConfirm')
+          myDialog2.close()
+        },
+        onCancel: () => {
+          console.log('onCancel')
+          myDialog2.close()
+        },
+      })
+    },
+    onCancel: () => {
+      console.log('onCancel')
+      myDialog.close()
+    },
+  })
+})
 </script>
 
 <template>
@@ -63,10 +102,19 @@ const [zodPlugin, submitHandler] = createZodPlugin(zodSchema, async (formData) =
     <NuxtLoadingIndicator />
 
     <h1 class="fg:brown">Validation from Zod schema</h1>
+
     <FormKit v-slot="{ value }" type="form" :plugins="[zodPlugin]" @submit="submitHandler">
       <FormKitSchema :schema="schema" />
       <pre wrap>{{ value }}</pre>
     </FormKit>
+
+    <ClientOnly>
+      <ElDialog></ElDialog>
+    </ClientOnly>
+    <button @click="myDialog.open()">open</button>
+    <button @click="myDialog.close()">close</button>
+    <button @click="myDialog.mount()">mount</button>
+    <button @click="myDialog.unmount()">unmount</button>
 
     <NuxtPage />
   </NuxtLayout>

@@ -1,10 +1,11 @@
-<script setup lang="ts">
+<script setup lang="tsx">
 import type { FormKitNode } from '@formkit/core'
 import type { ZodTypeAny } from 'zod'
 
 import { createZodPlugin } from '@formkit/zod'
 import { z } from 'zod'
 import { email_phone } from '@zy-kit/config/formkit/rules'
+import Dialog from '@/components/Dialog.vue'
 
 const zodSchema: ZodTypeAny = z.object({
   account: z.custom((value) => email_phone({ value } as FormKitNode)),
@@ -19,8 +20,52 @@ const [zodPlugin, submitHandler] = createZodPlugin(zodSchema, async (formData) =
   console.log(formData)
 })
 
-const values = reactive<{ currentTab: 'omo' | 'old' | 'oldTransfer' }>({
+const values = reactive<{ currentTab: 'omo' | 'old' | 'oldTransfer'; dialogVisible: boolean }>({
   currentTab: 'omo',
+  dialogVisible: false,
+})
+
+const createDialog = useCommandComponent(Dialog)
+let myDialog: ReturnType<typeof createDialog>
+
+onMounted(() => {
+  myDialog = createDialog({
+    title: 'test',
+    component: () => <input type="text" />,
+    onConfirm: () => {
+      console.log('onConfirm')
+
+      const myDialog2 = createDialog({
+        title: 'test222',
+        destroyOnClose: true,
+        component: () => (
+          <div>
+            <h1>12323</h1>
+            <button></button>
+          </div>
+        ),
+        footer: () => (
+          <div>
+            <button class="btn" onClick={myDialog2.close}>
+              OK
+            </button>
+          </div>
+        ),
+        onConfirm: () => {
+          console.log('onConfirm')
+          myDialog2.close()
+        },
+        onCancel: () => {
+          console.log('onCancel')
+          myDialog2.close()
+        },
+      })
+    },
+    onCancel: () => {
+      console.log('onCancel')
+      myDialog.close()
+    },
+  })
 })
 </script>
 
@@ -33,7 +78,6 @@ const values = reactive<{ currentTab: 'omo' | 'old' | 'oldTransfer' }>({
         <div class="abs top:-415 left:-40 bg:#FFC600 round 342x342 opacity:.2"></div>
       </div>
     </div>
-
     <div class="pb:5x">
       <template v-if="values.currentTab !== 'oldTransfer'">
         <div class="tabs">
@@ -50,22 +94,6 @@ const values = reactive<{ currentTab: 'omo' | 'old' | 'oldTransfer' }>({
           <Icon name="akar-icons:arrow-back-thick-fill" class="abs top:-100 right:0 z:1 fg:Y-50 cursor:pointer" @click="values.currentTab = 'omo'"></Icon>
         </div>
       </template>
-
-      <div class="modal" open>
-        <div class="modal-dialog">
-          <div class="modal-close">X</div>
-          <div class="dialog-content">
-            <div class="dialog-title">{{ $t('omoMemberTransfer') }}</div>
-            <div class="dialog-body">
-              <p>舊版會員帳號將於2023年10月1日起無法使用， 請會員們盡快完成帳號轉移，轉移完成可獲得100元折價卷。</p>
-            </div>
-            <div class="dialog-footer">
-              <button>再考慮</button>
-              <button>前往轉移</button>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <div class="mt:3x">
         <FormKit type="form" :actions="false" :plugins="[zodPlugin]" @submit="submitHandler">

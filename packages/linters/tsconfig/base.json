@@ -15,7 +15,8 @@
     "preserveWatchOutput": true,
     "skipLibCheck": true,
     "strict": true,
-    "noErrorTruncation": true
+    "noErrorTruncation": true,
+    "noImplicitAny": false
   },
   "exclude": ["node_modules"]
 }

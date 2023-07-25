@@ -26,6 +26,10 @@ watch(locale, (newVal) => {
   <CSSProvider>
     <NuxtLayout>
       <NuxtLoadingIndicator />
+
+      <ClientOnly>
+        <ElDialog></ElDialog>
+      </ClientOnly>
       <NuxtPage />
     </NuxtLayout>
   </CSSProvider>

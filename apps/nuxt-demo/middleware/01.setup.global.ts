@@ -1,5 +1,4 @@
 /* eslint-disable no-useless-return */
-/* eslint-disable n/prefer-global/process */
 
 export default defineNuxtRouteMiddleware((to, from) => {
   console.log(`[全域中間件] to: ${to.path}, from: ${from.path}`)

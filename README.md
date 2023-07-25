@@ -42,6 +42,74 @@
 * [SCSS](https://sass-lang.com/): 一種 CSS 預處理器，提供了更多功能和語法，使得 CSS 開發更加便捷和模塊化。
 * [PostCSS](https://postcss.org/): 一個用於轉換 CSS 的工具，它可以讓您使用 JavaScript 生態系統中的插件來擴展和自動化處理 CSS。
 
+---
+
+```bash
+# Nuxi commands
+
+npx nuxi add [--cwd] [--force] <TEMPLATE> <NAME>          # generates a component, composable, layout, plugin, page, middleware or api function.
+npx nuxi analyze [--log-level] [rootDir]                  # builds Nuxt and analyzes the production bundle (experimental).
+npx nuxi build-module [--stub] [rootDir]                  # runs @nuxt/module-builder to generate dist directory within your rootDir that contains the full build for your nuxt-module.
+npx nuxi build [--prerender] [--dotenv] [--log-level] [rootDir] # creates a .output directory with all your application, server and dependencies ready for production.
+npx nuxi clean|cleanup [rootDir]                          # removes common generated Nuxt files and caches
+npx nuxi dev [rootDir] [--dotenv] [--log-level] [--clipboard] [--open, -o] [--no-clear] [--port, -p] [--host, -h] [--https] [--ssl-cert] [--ssl-key]                                  # starts a development server with hot module replacement
+npx nuxi devtools enable|disable [rootDir]                # will install the Nuxt DevTools globally, and also enable it within the particular project you are using
+npx nuxi info [rootDir]                                   # logs information about the current or specified Nuxt project.
+npx nuxi init|create [--verbose|-v] [--template,-t] [dir] # initializes a fresh Nuxt project using unjs/giget.
+npx nuxi prepare [--log-level] [rootDir]                  # creates a .nuxt directory in your application and generates types.
+npx nuxi preview [rootDir] [--dotenv]                     # starts a server to preview your Nuxt application after running the build command.
+npx nuxi typecheck [--log-level] [rootDir]                # runs vue-tsc to check types throughout your app.
+npx nuxi upgrade [--force|-f]                             # upgrades Nuxt 3 to the latest version.
+```
+
+```js
+// Composables
+useAppConfig()       // Access the reactive app config defined in the project.
+useAsyncData()       // Within your pages, components, and plugins you can use useAsyncData to get access to data that resolve asynchronously.
+useCookie()          // Within your pages, components, and plugins, you can use useCookie, an SSR-friendly composable to rewrite cookies.
+useError()           // Returns the global Nuxt error that is being handled, and it is available on both the client and server.
+useFetch()           // Provides a convenient wrapper around useAsyncData and $fetch. It automatically generates a key on URL and fetch options, provides type hints for request url based on server routes, and infers API response type.
+useHeadSafe()        // A wrapper around the useHead composable that restricts the input only to allow safe values.
+useHead()            // Allows you to manage your head tags in a programmatic and reactive way
+useHydration()       // Allows full control of the hydration cycle to set and receive data from the server.
+useLazyAsyncData()   // Provides a wrapper around useAsyncData that triggers navigation before the handler is resolved
+useLazyFetch()       // Provides a wrapper around useFetch that triggers navigation before the handler is resolved.
+useNuxtApp()         // Provides a way to access shared runtime context of Nuxt, which is available on both client and server side.
+useNuxtData()        // Gives you access to the current cached value of useAsyncData, useLazyAsyncData, useFetch, and lazyFetch with explicitly provided key.
+useRequestEvent()    // Within your pages, components, and plugins, you can use useRequestEvent to access the ng request. In the browser, useRequestEvent will return undefined.
+useRequestHeaders()  // Access the incoming request headers within your pages, components, and plugins. In the browser, uestHeaders will return an empty object.
+useRouter()          // Returns the router instance and must be called in a setup function, plugin, or route middleware.
+useRuntimeConfig()   // Expose config variables within your app.
+useState()           // An SSR-friendly ref replacement. Its value will be preserved after server-side rendering and shaross all components using a unique key.
+useRoute()           // Returns the current route and must be called in a setup function, plugin, or route middleware.
+```
+
+```js
+// Nuxt utils
+$fetch()                     // helper for making HTTP requests within your Vue app or API routes.
+abortNavigation()            // prevents navigation from taking place and throws an error if one is set as a parameter.
+addRouteMiddleware()         // dynamically add route middleware in your Nuxt application.
+clearError()                 // clear all errors and redirect the user if redirection defined
+clearNuxtData()              // delete cached data, error status and pending promises of useAsyncData and useFetch.
+createError()                // create an error object with additional metadata. It is usable in both the Vue and Nitro portions of your app, and is meant to be thrown.
+defineNuxtComponent()        // helper function for defining type safe Vue components using options API similar to defineComponent().
+defineNuxtRouteMiddleware()  // create named route middleware
+definePageMeta()             // a compiler macro that you can use to set metadata for your page components
+navigateTo()                 // a router helper function that allows programmatically navigating users through your Nuxt application.
+onBeforeRouteLeave()         // adds a navigation guard that triggers whenever the component for the current location is about to be left.
+onBeforeRouteUpdate()        // adds a navigation guard that triggers whenever the component for the current location is about to be updated.
+onNuxtReady()                // allows running a callback after your app has finished initializing. It is ideal for running code that should not block the initial rendering of your app.
+prefetchComponents()         // manually prefetch individual components that have been registered globally in your Nuxt app. (By default Nuxt registers these as async components.) You must use the Pascal-cased version of the component name.
+preloadComponents()          // manually preload individual components that have been registered globally in your Nuxt app. (By default Nuxt registers these as async components.)
+preloadRouteComponents()     // manually preload individual pages in your Nuxt app.
+refreshNuxtData()            // re-fetches all data from the server and updates the page as well as invalidates the cache of useAsyncData, useLazyAsyncData, useFetch and useLazyFetch.
+reloadNuxtApp()              // perform a hard reload of your app, re-requesting a page and its dependencies from the server.
+setPageLayout()              // allows you to dynamically change the layout of a page.
+setReponseStatus()           // sets the statusCode (and optionally the statusMessage) of the response.
+showError()                  // provides a quick and simple way to show a full-screen error page if needed.
+updateAppConfig()            // updates app config using deep assignment.
+```
+
 ## Apps
 
 ## Docs

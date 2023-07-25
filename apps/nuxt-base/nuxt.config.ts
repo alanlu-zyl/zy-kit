@@ -24,7 +24,7 @@ export default defineNuxtConfig({
   // https://nuxt.com/docs/api/configuration/nuxt-config#modules
   modules: [
     // components,
-    // ['@element-plus/nuxt', nuxtConfig.elementPlus],
+    ['@element-plus/nuxt', nuxtConfig.elementPlus],
     ['@vueuse/nuxt', nuxtConfig.vueuse],
     ['@pinia/nuxt', nuxtConfig.pinia],
     ['@pinia-plugin-persistedstate/nuxt', nuxtConfig.piniaPersistedstate],
@@ -79,12 +79,12 @@ export default defineNuxtConfig({
         },
       },
     },
-    // plugins: [
-    //   // https://vue-i18n.intlify.dev/guide/advanced/optimization.html#unplugin-vue-i18n
-    //   VueI18nVitePlugin({
-    //     // locale messages resource pre-compile option
-    //     include: [resolve(currentDir, './locales/*.json')],
-    //   }),
-    // ],
+    plugins: [
+      // https://vue-i18n.intlify.dev/guide/advanced/optimization.html#unplugin-vue-i18n
+      // VueI18nVitePlugin({
+      //   // locale messages resource pre-compile option
+      //   include: [resolve(currentDir, './locales/*.json')],
+      // }),
+    ],
   },
 })

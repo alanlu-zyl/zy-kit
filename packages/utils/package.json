@@ -1,5 +1,6 @@
 {
   "name": "@zy-kit/utils",
+  "type": "module",
   "version": "0.0.0",
   "description": "utils",
   "author": "Alan Lu <alanlu.zyl@gmail.com>",
@@ -7,9 +8,49 @@
   "keywords": [
     "utils"
   ],
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "development": "./src/index.ts",
+      "default": "./dist/esm/index.js"
+    },
+    "./*": {
+      "types": "./src/*/index.ts",
+      "development": "./src/*/index.ts",
+      "default": "./dist/esm/*.js"
+    }
+  },
   "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./src/*"
+      ]
+    }
+  },
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/esm/index.js",
+        "require": "./dist/index.js"
+      },
+      "./*": {
+        "types": "./dist/*.d.ts",
+        "import": "./dist/esm/*.js",
+        "require": "./dist/*.js"
+      }
+    },
+    "typesVersions": {
+      "*": {
+        "*": [
+          "./dist/*.d.ts"
+        ]
+      }
+    }
+  },
   "files": [
     "dist"
   ],

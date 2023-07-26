@@ -36,5 +36,20 @@
 
   "masterCSS.config": "packages/master/dist/master.css.cjs",
 
-  "cSpell.words": ["antfu", "commitlint", "formkit", "intlify", "nuxt", "nuxtjs", "persistedstate", "pinia", "preinstall", "stylelint", "tsup", "unplugin", "vueuse"]
+  "cSpell.words": [
+    "antfu",
+    "commitlint",
+    "formkit",
+    "intlify",
+    "mcss",
+    "nuxt",
+    "nuxtjs",
+    "persistedstate",
+    "pinia",
+    "preinstall",
+    "stylelint",
+    "tsup",
+    "unplugin",
+    "vueuse"
+  ]
 }

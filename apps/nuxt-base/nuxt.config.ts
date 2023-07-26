@@ -1,12 +1,12 @@
 // import { dirname, resolve } from 'node:path'
 // import { fileURLToPath } from 'node:url'
-import { defineNuxtConfig } from 'nuxt/config'
 
 // modules's config
 import { appConfig, nuxtConfig } from '@zy-kit/config'
 
 // import components from '@zy-kit/components/nuxt'
 // import VueI18nVitePlugin from '@intlify/unplugin-vue-i18n/vite'
+// import { CSSExtractorPlugin } from '@master/css-extractor.vite'
 
 // const currentDir = dirname(fileURLToPath(import.meta.url))
 
@@ -81,6 +81,10 @@ export default defineNuxtConfig({
       },
     },
     plugins: [
+      // CSSExtractorPlugin({
+      //   sources: ['foo.txt'],
+      //   module: '.virtual:home.css',
+      // }),
       // https://vue-i18n.intlify.dev/guide/advanced/optimization.html#unplugin-vue-i18n
       // VueI18nVitePlugin({
       //   // locale messages resource pre-compile option

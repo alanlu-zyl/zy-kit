@@ -1,4 +1,4 @@
-import { obj } from '@zy-kit/utils'
+import { merge } from '@zy-kit/utils/obj'
 
 // Base
 import { type Config } from '@master/css'
@@ -30,11 +30,12 @@ import table from './components/table'
 import tabs from './components/tabs'
 import title from './components/title'
 
-// Components - formkit
+// Components - Vendor
+import elementPlus from './components/element-plus'
 import formkit from './components/formkit'
 
 const extendsConfig: NonNullable<Config['extends']> = [
-  obj.merge(
+  merge(
     // Base
     breakpoints,
     colors,
@@ -61,7 +62,8 @@ const extendsConfig: NonNullable<Config['extends']> = [
     table,
     tabs,
     title,
-    // Components - formkit
+    // Components - Vendor
+    elementPlus,
     formkit
   ),
 ]

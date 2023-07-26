@@ -1,5 +1,5 @@
 import { type Config } from '@master/css'
-import { $ } from '../../helpers/literal'
+import { $ } from '@zy-kit/utils/mcss'
 
 const config: Config = {
   classes: {
@@ -23,7 +23,7 @@ const config: Config = {
           #checkbox:focus-visible+label_{scale(2.5)}::before
         `,
         '-default': $`
-          b:1|solid|G-40
+          b:1|G-40
           [disabled]_{background:rgba(0,0,0,.1)}
           :not([disabled]):hover_{border-color:$(theme)}
           [checked]_{border-color:$(theme);bg:$(theme)}

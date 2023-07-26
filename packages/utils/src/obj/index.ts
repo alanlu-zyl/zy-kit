@@ -45,7 +45,7 @@ function hyphenate(str): string {
  * @param overrideProps
  * @returns
  */
-export function getDefaultFromProps<T = Record<string, any>>(props: Record<string, any>, overrideProps: T): T | Record<string, any> {
+function getDefaultFromProps<T = Record<string, any>>(props: Record<string, any>, overrideProps: T): T | Record<string, any> {
   const defaults = Object.entries(props).reduce((temp, [key, value]) => {
     temp[key] = value?.default
     return temp
@@ -56,8 +56,15 @@ export function getDefaultFromProps<T = Record<string, any>>(props: Record<strin
   }
 }
 
-export const obj = {
-  isObject,
-  merge,
-  getDefaultFromProps,
+type CallbackFunction<T extends any[]> = (...args: T) => void
+
+function setCallback<T extends any[]>(callback: CallbackFunction<T> | undefined, fallback: CallbackFunction<T>): CallbackFunction<T> {
+  return typeof callback === 'function'
+    ? (...args: T) => {
+        callback(...args)
+        fallback(...args)
+      }
+    : fallback
 }
+
+export { isObject, merge, getDefaultFromProps, setCallback }

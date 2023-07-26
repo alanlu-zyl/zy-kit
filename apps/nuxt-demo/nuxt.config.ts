@@ -1,4 +1,3 @@
-import { defineNuxtConfig } from 'nuxt/config'
 import components from '@zy-kit/components/nuxt'
 
 // modules's config

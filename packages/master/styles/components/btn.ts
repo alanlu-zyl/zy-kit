@@ -1,5 +1,5 @@
 import { type Config } from '@master/css'
-import { $ } from '../../helpers/literal'
+import { $ } from '@zy-kit/utils/mcss'
 
 const config: Config = {
   classes: {
@@ -11,7 +11,7 @@ const config: Config = {
         f:inherit fg:$(fg,inherit) bg:$(bg,inherit)
         t:center vertical-align:middle
         text-transform:inherit text:none white-space:nowrap
-        b:1|solid|$(border,G-50)
+        b:1|$(border,G-50)
         ~.2s transition-property:color,background,border-color,box-shadow
         pointer outline:none
         pointer-events:all

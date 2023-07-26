@@ -1,5 +1,5 @@
 import { type Config } from '@master/css'
-import { $, toLine } from '../../helpers/literal'
+import { $, toLine } from '@zy-kit/utils/mcss'
 
 export default <Config>{
   classes: {
@@ -8,7 +8,7 @@ export default <Config>{
       '': toLine({
         '': $`m:0 p:0 f:16 lh:1.4`,
         '_:where(p),_headings': $`m:0`,
-        '_:where(kbd)': $`mx:0x p:0x r:0x f:12 fg:B-30 bg:W-50 b:1|solid|B-30/.5 shadow:sm`,
+        '_:where(kbd)': $`mx:0x p:0x r:0x f:12 fg:B-30 bg:W-50 b:1|B-30/.5 shadow:sm`,
       }),
     },
     // 滾動軸

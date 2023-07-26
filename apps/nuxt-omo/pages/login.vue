@@ -1,11 +1,15 @@
 <script setup lang="tsx">
 import type { FormKitNode } from '@formkit/core'
 import type { ZodTypeAny } from 'zod'
+import type { TransitionProps } from 'vue'
 
 import { createZodPlugin } from '@formkit/zod'
 import { z } from 'zod'
 import { email_phone } from '@zy-kit/config/formkit/rules'
 import { Dialog } from '#components'
+
+const createDialog = useCommandComponent(Dialog)
+let myDialog: ReturnType<typeof createDialog>
 
 const zodSchema: ZodTypeAny = z.object({
   account: z.custom((value) => email_phone({ value } as FormKitNode)),
@@ -13,59 +17,35 @@ const zodSchema: ZodTypeAny = z.object({
 })
 
 const [zodPlugin, submitHandler] = createZodPlugin(zodSchema, async (formData) => {
-  // fake submit handler, but this is where you
-  // do something with your valid data.
-  await new Promise((resolve) => setTimeout(resolve, 2000))
-  alert('Form was submitted!')
-  console.log(formData)
-})
-
-const values = reactive<{ currentTab: 'omo' | 'old' | 'oldTransfer'; dialogVisible: boolean }>({
-  currentTab: 'omo',
-  dialogVisible: false,
-})
-
-const createDialog = useCommandComponent(Dialog)
-let myDialog: ReturnType<typeof createDialog>
-
-onMounted(() => {
-  myDialog = createDialog({
-    title: 'test',
-    component: () => <input type="text" />,
-    onConfirm: () => {
-      console.log('onConfirm')
-
-      const myDialog2 = createDialog({
-        title: 'test222',
-        destroyOnClose: true,
-        component: () => (
-          <div>
-            <h1>12323</h1>
-            <button></button>
-          </div>
-        ),
-        footer: () => (
-          <div>
-            <button class="btn" onClick={myDialog2.close}>
-              OK
-            </button>
-          </div>
-        ),
-        onConfirm: () => {
-          console.log('onConfirm')
-          myDialog2.close()
-        },
-        onCancel: () => {
-          console.log('onCancel')
-          myDialog2.close()
-        },
-      })
-    },
-    onCancel: () => {
-      console.log('onCancel')
-      myDialog.close()
-    },
+  await new Promise((resolve) => setTimeout(resolve, 300))
+  createDialog({
+    component: () => (
+      <div>
+        <p>account: {formData.account}</p>
+        <p>password: {formData.password}</p>
+      </div>
+    ),
   })
+})
+
+const values = reactive<{ currentTab: 'omo' | 'old' | 'oldTransfer' }>({
+  currentTab: 'omo',
+})
+
+const direction: Record<typeof values.currentTab, '>' | '<'> = {
+  omo: '<',
+  old: '>',
+  oldTransfer: '<',
+}
+
+const transitionBind = computed((): TransitionProps => {
+  return {
+    mode: 'out-in',
+    enterActiveClass: '~all|.1s|ease-out',
+    leaveActiveClass: '~all|.1s|ease-in',
+    enterFromClass: `opacity:0 translateX(${direction[values.currentTab] === '>' ? -50 : 50})`,
+    leaveToClass: `opacity:0 translateX(${direction[values.currentTab] === '>' ? 50 : -50})`,
+  }
 })
 </script>
 
@@ -79,29 +59,27 @@ onMounted(() => {
       </div>
     </div>
     <div class="pb:5x">
-      <template v-if="values.currentTab !== 'oldTransfer'">
-        <div class="tabs">
-          <input id="radio-1" v-model="values.currentTab" type="radio" value="omo" />
-          <label for="radio-1">{{ $t('omoMember') }}</label>
-          <input id="radio-2" v-model="values.currentTab" type="radio" value="old" />
-          <label for="radio-2">{{ $t('oldMember') }}</label>
-          <span class="tabs-glider"></span>
-        </div>
-      </template>
-      <template v-else>
-        <div class="rel">
-          <p class="subject f:20 f:bold my:4x">{{ $t('oldMemberTransfer') }}</p>
-          <Icon name="akar-icons:arrow-back-thick-fill" class="abs top:-100 right:0 z:1 fg:Y-50 cursor:pointer" @click="values.currentTab = 'omo'"></Icon>
-        </div>
-      </template>
-
+      <div class="h:40 flex center-content w:full>div">
+        <Transition v-bind="transitionBind">
+          <div v-if="values.currentTab !== 'oldTransfer'" class="tabs">
+            <input id="radio-1" v-model="values.currentTab" type="radio" value="omo" />
+            <label for="radio-1">{{ $t('omoMember') }}</label>
+            <input id="radio-2" v-model="values.currentTab" type="radio" value="old" />
+            <label for="radio-2">{{ $t('oldMember') }}</label>
+            <span class="tabs-glider"></span>
+          </div>
+          <div v-else>
+            <p class="subject f:20 f:bold">{{ $t('oldMemberTransfer') }}</p>
+          </div>
+        </Transition>
+      </div>
       <div class="mt:3x">
         <FormKit type="form" :actions="false" :plugins="[zodPlugin]" @submit="submitHandler">
           <FormKit type="text" name="account" validation="required|email_phone" :validation-label="$t('account')" :placeholder="$t('account')"></FormKit>
           <FormKit type="password" name="password" validation="required|length:6" :validation-label="$t('password')" :placeholder="$t('password')"></FormKit>
-          <div class="flex ai:start jc:space-between f:14">
-            <FormKit type="checkbox" name="rememberAccount" :label="$t('rememberAccount')"></FormKit>
-            <nuxt-link to="#" class="link content:initial!:not(:hover):before fg:gray!">{{ $t('forgotPassword') }}</nuxt-link>
+          <div class="flex ai:start f:14">
+            <FormKit v-show="values.currentTab !== 'oldTransfer'" type="checkbox" name="rememberAccount" :label="$t('rememberAccount')"></FormKit>
+            <nuxt-link to="#" class="ml:auto link content:initial!:not(:hover):before fg:gray!">{{ $t('forgotPassword') }}</nuxt-link>
           </div>
 
           <template v-if="values.currentTab !== 'oldTransfer'">
@@ -115,18 +93,12 @@ onMounted(() => {
 
       <div class="mt:3x flex jc:space-around f:bold t:center mr:0x_svg">
         <button class="btn btn-type--flat flex:1"><Icon name="fb" size="24"></Icon><span>Facebook</span></button>
-        <span class="bl:1|solid|G-20"></span>
+        <span class="bl:1|G-20"></span>
         <button class="btn btn-type--flat flex:1"><Icon name="line" size="24"></Icon><span>Line</span></button>
       </div>
 
       <div class="mt:3x f:14 fg:G-40">
-        <Transition
-          mode="out-in"
-          enter-active-class="~all|.15s|ease-out"
-          leave-active-class="~all|.15s|ease-in"
-          :enter-from-class="`opacity:0 translateX(${values.currentTab === 'omo' ? 50 : -50})`"
-          :leave-to-class="`opacity:0 translateX(${values.currentTab === 'omo' ? -50 : 50})`"
-        >
+        <Transition v-bind="transitionBind">
           <div v-if="values.currentTab === 'omo'">
             <span>
               還不是會員? <nuxt-link to="#" class="link fg:Y-50! f:bold">{{ $t('joinOMONow') }}</nuxt-link>
@@ -147,7 +119,7 @@ onMounted(() => {
             <span>為有更好的使用體驗，舊版會員帳號將於2023年10月1日起無法使用，請會員們盡快完成帳號轉移，轉移完成可獲得100元折價卷。</span>
             <br />
             <div class="t:center mt:2x f:16 f:bold">
-              <nuxt-link to="#" class="link fg:B-30!">{{ $t('oldMemberLogin') }}</nuxt-link>
+              <nuxt-link to="#" class="link fg:B-30!" @click="values.currentTab = 'old'">{{ $t('oldMemberLogin') }}</nuxt-link>
             </div>
           </div>
         </Transition>

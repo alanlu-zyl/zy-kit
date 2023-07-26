@@ -1,5 +1,5 @@
 import { type Config } from '@master/css'
-import { $ } from '../../helpers/literal'
+import { $ } from '@zy-kit/utils/mcss'
 
 const config: Config = {
   classes: {
@@ -23,7 +23,7 @@ const config: Config = {
           {~.2s|cubic-bezier(.12,.4,.29,1.46)|.1s}::after
         `,
         '-default': $`
-          b:1|solid|G-40
+          b:1|G-40
           [disabled]_{background:rgba(0,0,0,.1)}
           :not([disabled]):hover_{border-color:$(theme)}
           {bg:$(theme);scale(0)}::after
@@ -33,7 +33,7 @@ const config: Config = {
         `,
         '-theme': $`
           bg:$(theme)
-          {border:2|solid|white;scale(0)}::after
+          {b:2|white;scale(0)}::after
 
           [checked]_{scale(1)}::after
         `,

@@ -1,5 +1,5 @@
 import { type Config } from '@master/css'
-import { $, toLine } from '../../helpers/literal'
+import { $, toLine } from '@zy-kit/utils/mcss'
 
 const config: Config = {
   classes: {
@@ -9,7 +9,7 @@ const config: Config = {
         '': $`
           box:border rel r:0x overflow:hidden
           flex ai:center jc:space-between h:4x
-          fg:fg bg:bg-box b:1|solid|fg/.5
+          fg:fg bg:bg-box b:1|fg/.5
           ~.2s
         `,
         '[invalid]': $`border-color:danger {fg:danger}_.input-icon`,

@@ -1,5 +1,5 @@
 import { type Config } from '@master/css'
-import { $ } from '../../helpers/literal'
+import { $ } from '@zy-kit/utils/mcss'
 
 const config: Config = {
   classes: {

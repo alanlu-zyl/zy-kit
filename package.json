@@ -61,6 +61,7 @@
     "element-plus": "^2.3.8",
     "eslint": "^8.45.0",
     "eslint-config-custom": "workspace:*",
+    "fast-glob": "^3.3.1",
     "lint-staged": "^13.2.3",
     "markdownlint-cli2": "^0.7.1",
     "markdownlint-config-custom": "workspace:*",

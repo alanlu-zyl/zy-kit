@@ -1,5 +1,5 @@
 import { type Config } from '@master/css'
-import { $ } from '../../helpers/literal'
+import { $ } from '@zy-kit/utils/mcss'
 
 const config: Config = {
   classes: {
@@ -20,7 +20,7 @@ const config: Config = {
       tr: $`
         rel ai:center
         {bg:theme/.15}:nth-child(odd)
-        {bb:1|solid|theme/.3}:not(:last-of-type)
+        {bb:1|theme/.3}:not(:last-of-type)
         {border-bottom-width:2}:not(:last-of-type)@<sm
         {grid-cols:$(cols,6);t:center}@sm
         {grid-rows:$(rows,3);t:left}@<sm

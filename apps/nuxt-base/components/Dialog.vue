@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { DialogProps } from 'element-plus'
 import { ElDialog } from 'element-plus'
-import { obj } from '@zy-kit/utils'
+import { getDefaultFromProps } from '@zy-kit/utils/obj'
 
 export interface IProps extends DialogProps {
   header?: null | string | Component
@@ -9,14 +9,14 @@ export interface IProps extends DialogProps {
   footer?: null | string | Component
   visible?: boolean | Ref<boolean>
 }
-const props = withDefaults(defineProps<IProps>(), obj.getDefaultFromProps(ElDialog.props, {}))
+const props = withDefaults(defineProps<IProps>(), getDefaultFromProps(ElDialog.props, {}))
 
 const emits = defineEmits<{
   // (event: 'update:visible', visible: boolean): void
-  // 關閉
-  (event: 'close'): void
   // 已關閉
   (event: 'closed'): void
+  // 關閉
+  (event: 'close'): void
   // 取消
   (event: 'cancel'): void
   // 確認
@@ -34,29 +34,23 @@ const localProps = computed(() => {
 })
 
 function handleClose() {
-  console.log('handleClose')
   emits('close')
 }
 
 function handleClosed() {
-  console.log('handleClosed')
   emits('closed')
 }
 
 function handleCancel() {
-  console.log('handleCancel')
   emits('cancel')
 }
 
 const componentRef = ref<any>()
 
 function handleConfirm() {
-  console.log('handleConfirm')
   const submit: () => Promise<any> = componentRef.value?.submit || (() => Promise.resolve(true))
   submit().then((data) => emits('confirm', data))
 }
-
-console.log(props.footer)
 </script>
 
 <template>

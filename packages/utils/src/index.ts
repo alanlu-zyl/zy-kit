@@ -1,2 +1,3 @@
-export { obj } from './obj'
-export { dom } from './dom'
+export * from './obj'
+export * from './dom'
+export * from './mcss'

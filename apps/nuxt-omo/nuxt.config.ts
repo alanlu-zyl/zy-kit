@@ -1,6 +1,5 @@
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { defineNuxtConfig } from 'nuxt/config'
 
 // modules's config
 import { nuxtConfig } from '@zy-kit/config'

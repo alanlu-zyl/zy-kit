@@ -68,6 +68,7 @@ export default defineNuxtConfig({
   css: [
     // SCSS file in the project
     '@zy-kit/scss', // you should add main.scss somewhere in your app
+    'element-plus/es/components/dialog/style/css',
   ],
 
   // https://nuxt.com/docs/api/configuration/nuxt-config#vite

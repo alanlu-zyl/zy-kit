@@ -5,7 +5,7 @@ import type { ZodTypeAny } from 'zod'
 import { createZodPlugin } from '@formkit/zod'
 import { z } from 'zod'
 import { email_phone } from '@zy-kit/config/formkit/rules'
-import Dialog from '@/components/Dialog.vue'
+import { Dialog } from '#components'
 
 const zodSchema: ZodTypeAny = z.object({
   account: z.custom((value) => email_phone({ value } as FormKitNode)),

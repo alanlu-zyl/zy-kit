@@ -90,7 +90,7 @@ export function useCommandComponent<T extends Component>(Component: T) {
     options.onCancel = setCallback(options.onCancel, close)
     options.onConfirm = setCallback(options.onConfirm, close)
 
-    const initVisible = options?.visible || true
+    const initVisible = options?.visible ?? true
     options.visible = ref(initVisible)
 
     if (initVisible) {

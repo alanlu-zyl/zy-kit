@@ -6,16 +6,16 @@ import type { TransitionProps } from 'vue'
 import { createZodPlugin } from '@formkit/zod'
 import { z } from 'zod'
 import { email_phone } from '@zy-kit/config/formkit/rules'
+import { $, toLine } from '@zy-kit/utils/mcss'
 import { Dialog } from '#components'
 
 const createDialog = useCommandComponent(Dialog)
-let myDialog: ReturnType<typeof createDialog>
 
+// 表單相關
 const zodSchema: ZodTypeAny = z.object({
   account: z.custom((value) => email_phone({ value } as FormKitNode)),
   password: z.string().min(6),
 })
-
 const [zodPlugin, submitHandler] = createZodPlugin(zodSchema, async (formData) => {
   await new Promise((resolve) => setTimeout(resolve, 300))
   createDialog({
@@ -32,12 +32,12 @@ const values = reactive<{ currentTab: 'omo' | 'old' | 'oldTransfer' }>({
   currentTab: 'omo',
 })
 
+// 動畫相關
 const direction: Record<typeof values.currentTab, '>' | '<'> = {
   omo: '<',
   old: '>',
   oldTransfer: '<',
 }
-
 const transitionBind = computed((): TransitionProps => {
   return {
     mode: 'out-in',
@@ -46,6 +46,24 @@ const transitionBind = computed((): TransitionProps => {
     enterFromClass: `opacity:0 translateX(${direction[values.currentTab] === '>' ? -50 : 50})`,
     leaveToClass: `opacity:0 translateX(${direction[values.currentTab] === '>' ? 50 : -50})`,
   }
+})
+
+let joinOMOModel: ReturnType<typeof createDialog>
+
+onBeforeMount(() => {
+  joinOMOModel = createDialog({
+    visible: false,
+    showClose: false,
+    destroyOnClose: false,
+    rootClass: toLine({
+      '_.el-dialog': $`max-w:300`,
+      '_.el-dialog__header': $`p:2x|2x|0 m:0`,
+      '_.el-dialog__body': $`p:1x|2x`,
+    }),
+    header: () => <h3 class="t:center">提示</h3>,
+    component: () => <p>即將離開此頁面並前往燦坤 OMO 會員轉移頁面 https://Tk3c@tt.com/2LlZ1n</p>,
+  })
+  joinOMOModel.mount()
 })
 </script>
 
@@ -101,7 +119,8 @@ const transitionBind = computed((): TransitionProps => {
         <Transition v-bind="transitionBind">
           <div v-if="values.currentTab === 'omo'">
             <span>
-              還不是會員? <nuxt-link to="#" class="link fg:Y-50! f:bold">{{ $t('joinOMONow') }}</nuxt-link>
+              還不是會員?
+              <nuxt-link to="#" class="link fg:Y-50! f:bold" @click="joinOMOModel.open()">{{ $t('joinOMONow') }}</nuxt-link>
             </span>
             <br />
             <span>

@@ -2,6 +2,9 @@
 import type { DefaultConfigOptions } from '@formkit/vue'
 
 useHead({
+  htmlAttrs: {
+    class: 'normal',
+  },
   bodyAttrs: {
     class: 'normal',
   },

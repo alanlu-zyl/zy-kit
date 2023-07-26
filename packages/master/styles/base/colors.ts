@@ -10,30 +10,16 @@ const baseColors = {
 const config: Config = {
   colors: {
     ...baseColors,
-    success: '#269244',
-    waring: '#D9730D',
-    danger: '#E03E3E',
+    success: '#269244 #74A16A@dark',
+    waring: '#D9730D #FFA344@dark',
+    danger: '#E03E3E #FF7369@dark',
     info: '#2F80ED',
-    link: '#0F62FE',
+    link: '#0F62FE #529CCA@dark',
 
-    theme: { '': '#666666', fg: '#FFFFFF' },
-    fg: { '': '#333333' },
-    bg: { '': '#FEFEFE', box: '#FEFEFE', btn: '#FEFEFE' },
+    theme: { '': '#666666 #333333@dark', fg: '#FFFFFF #EEEEEE@dark' },
+    fg: { '': '#333333 #EEEEEE@dark' },
+    bg: { '': '#FEFEFE #CCCCCC@dark', box: '#FEFEFE #777777@dark', btn: '#FEFEFE #777777@dark' },
   },
-  // themes: {
-  //   light: {},
-  //   dark: {
-  //     colors: {
-  //       success: '#74A16A',
-  //       waring: '#FFA344',
-  //       danger: '#FF7369',
-  //       link: '#529CCA',
-  //       theme: { '': '#333333', fg: '#EEEEEE' },
-  //       fg: { '': '#EEEEEE' },
-  //       bg: { '': '#CCCCCC', box: '#777777', btn: '#777777' },
-  //     },
-  //   },
-  // },
 }
 
 export default config

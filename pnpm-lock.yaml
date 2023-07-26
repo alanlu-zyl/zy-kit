@@ -9,23 +9,23 @@ importers:
   .:
     dependencies:
       '@master/css-extractor':
-        specifier: 2.0.0-beta.160
-        version: 2.0.0-beta.160
+        specifier: 2.0.0-beta.164
+        version: 2.0.0-beta.164
       '@master/css-extractor.vite':
-        specifier: 2.0.0-beta.160
-        version: 2.0.0-beta.160(vite@4.4.4)
+        specifier: 2.0.0-beta.164
+        version: 2.0.0-beta.164(vite@4.4.4)
       '@master/css-server.nitro':
-        specifier: 2.0.0-beta.160
-        version: 2.0.0-beta.160
+        specifier: 2.0.0-beta.164
+        version: 2.0.0-beta.164
       '@master/css-validator':
-        specifier: 2.0.0-beta.160
-        version: 2.0.0-beta.160
+        specifier: 2.0.0-beta.164
+        version: 2.0.0-beta.164
       '@master/css.vue':
-        specifier: 2.0.0-beta.160
-        version: 2.0.0-beta.160(vue@3.3.4)
+        specifier: 2.0.0-beta.164
+        version: 2.0.0-beta.164(vue@3.3.4)
       class-variant:
-        specifier: 2.0.0-beta.160
-        version: 2.0.0-beta.160(react@18.2.0)
+        specifier: 2.0.0-beta.164
+        version: 2.0.0-beta.164(react@18.2.0)
     devDependencies:
       '@commitlint/cli':
         specifier: ^17.6.6
@@ -2096,22 +2096,22 @@ packages:
       - supports-color
     dev: true
 
-  /@master/css-extractor.vite@2.0.0-beta.160(vite@4.4.4):
-    resolution: {integrity: sha512-OlCmJ+9AlwD0IWdW2BX0DEGEhU2PnYVOuCN8LAoRe38iokIh5m3/67wf9op4gZ4WhNNQBqZJF0iNufcMcvwzLg==}
+  /@master/css-extractor.vite@2.0.0-beta.164(vite@4.4.4):
+    resolution: {integrity: sha512-q6Cs9WYh4IuAiRGvd0e00VQOHQ+yqfDPu7GaTfM4DQrx/V5W8gn/RsgLanRvXUmkHAqUi5M0sRtWHarJmGV2oA==}
     peerDependencies:
       vite: '>=3.0.0'
     dependencies:
-      '@master/css': 2.0.0-beta.163
-      '@master/css-extractor': 2.0.0-beta.160
+      '@master/css': 2.0.0-beta.164
+      '@master/css-extractor': 2.0.0-beta.164
       lodash.debounce: 4.0.8
       vite: 4.4.4(@types/node@18.16.19)(sass@1.63.6)
     dev: false
 
-  /@master/css-extractor@2.0.0-beta.160:
-    resolution: {integrity: sha512-A4L0H1L+kV6sIkY3jVFWaithTW3Rt1O2Xnf4n7h7x7Dy7LbVj/6oFG0BQQFpo7FL5KU+atgWE1Qb/piS8wgbbw==}
+  /@master/css-extractor@2.0.0-beta.164:
+    resolution: {integrity: sha512-Tf66uiIqfeuH3XcPTiTwpviqbi6vBkN9jP01GA2TW+pRADVz/CZpsQ8CQ3Jc9eTym7+uJoCPBIh2Lw5NGJ9/Eg==}
     dependencies:
-      '@master/css': 2.0.0-beta.163
-      '@master/css-validator': 2.0.0-beta.160
+      '@master/css': 2.0.0-beta.164
+      '@master/css-validator': 2.0.0-beta.164
       '@techor/extend': 2.4.5
       '@techor/glob': 2.4.5
       '@techor/log': 2.4.5
@@ -2120,40 +2120,40 @@ packages:
       minimatch: 9.0.3
     dev: false
 
-  /@master/css-server.nitro@2.0.0-beta.160:
-    resolution: {integrity: sha512-rYwMoTwPLCIKug9uZ5gegVtbfBDHvSAOXG25LXV9xLUat8nYPh7N7ZzeVu8jDfjL2KVVSPYfDJ4y8AVK4GnpXQ==}
+  /@master/css-server.nitro@2.0.0-beta.164:
+    resolution: {integrity: sha512-5spdbbGbRFCr0jNQ8JWNm3r6tErnNPd8r4+mtY9gCOh/RzSOJcyRMqaizUcJ62XNEkD5fX1s1jOvpEku3xm3kQ==}
     dependencies:
-      '@master/css': 2.0.0-beta.163
+      '@master/css': 2.0.0-beta.164
     dev: false
 
-  /@master/css-validator@2.0.0-beta.160:
-    resolution: {integrity: sha512-6K3vZ/UYY+kTXeYonm3ptpKqi6vo42jVDMcCq+oDlrytAMbP/dCXmfS9LsmOTJBtxE3hFj/kIG36zkRA+/vbwg==}
+  /@master/css-validator@2.0.0-beta.164:
+    resolution: {integrity: sha512-iXI59j+xc7i2CckMTS02HwB44AyiNybVD+XxmaMAedXGIoKXydD2AACTaAgiJ6XppD6OcKe7YjmvTvU9C0hZRQ==}
     dependencies:
-      '@master/css': 2.0.0-beta.163
+      '@master/css': 2.0.0-beta.164
       csstree-validator: 3.0.0
     dev: false
 
-  /@master/css.vue@2.0.0-beta.160(vue@3.3.4):
-    resolution: {integrity: sha512-awVQdM3B1nsTTE3fzzVsqOqZF85qbJ+0/eFuaEZMKmz/ye0vLG+tSIRl+RpCg2s5CZO6lxwbJgy4RYkbCVJicg==}
+  /@master/css.vue@2.0.0-beta.164(vue@3.3.4):
+    resolution: {integrity: sha512-YuvNXtZuY4PO4potfFRhCgysFwj9WBLA7TVgO1zuclvmfWVvIR/Nrd5vbIaL9U9wM43uBK9vFlaGSKcV92p4dA==}
     peerDependencies:
       vue: '>= 3.0.0'
     dependencies:
-      '@master/css': 2.0.0-beta.163
+      '@master/css': 2.0.0-beta.164
       vue: 3.3.4
     dev: false
 
-  /@master/css@2.0.0-beta.163:
-    resolution: {integrity: sha512-0igm25wFe5xLZRUZtGhhvc47LiaUDoSMgRplEQZgLAommseDSefzY8ZlMLeOGk7cnFl4kAEcqXA29eZMBUETnA==}
+  /@master/css@2.0.0-beta.164:
+    resolution: {integrity: sha512-kiQcI1Yi69mafhUSpczJf6gSfRlKkBoMgN8QxiBUSYf43Nva0mc1+HO91+IPjvAcDMDWdYOvjPy5vVw0WJYzmA==}
     hasBin: true
     dependencies:
-      '@master/normal.css': 2.0.0-beta.163
+      '@master/normal.css': 2.0.0-beta.164
       '@techor/fs': 2.4.5
       '@techor/log': 2.4.5
       commander: 11.0.0
     dev: false
 
-  /@master/normal.css@2.0.0-beta.163:
-    resolution: {integrity: sha512-Q7ogXQAwj0BBi9s9egotW8sb7FS/O2rY/FaepXorTWQV3vt6PgHKvJRks8tpVi5O6XT7bXR+5ymTqor3AFX8nA==}
+  /@master/normal.css@2.0.0-beta.164:
+    resolution: {integrity: sha512-JR3IcOiSdV3+YuzHzorUtFA8Ua7pTBN5AOBJ0v4NWdWRQ1UIqEfC4uk1QFiIzcl0mZz8F8HzPkbkHd81t4Cn0g==}
     dev: false
 
   /@mizchi/sucrase@4.1.0:
@@ -4224,8 +4224,8 @@ packages:
       ansi-colors: 4.1.3
     dev: false
 
-  /class-variant@2.0.0-beta.160(react@18.2.0):
-    resolution: {integrity: sha512-J1Vz69Pli2mx+jRCnhrW+wWgNVY2dZlgxpI+PmJ+bqIiOkmHRz/CXVs79ztchrWSV+ynVAbPOoW8Fz9Ysoph+Q==}
+  /class-variant@2.0.0-beta.164(react@18.2.0):
+    resolution: {integrity: sha512-LdDtX7u+Pj/BANGhCTH2IlhsUYr9xibqeY5ymemfIAoOa2skJTrpLQzSvB+hjGxgwJ5QlI4dcm7dGaO+WVEicA==}
     peerDependencies:
       react: '>= 16.8.0'
     dependencies:

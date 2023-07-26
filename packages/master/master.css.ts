@@ -2,6 +2,7 @@ import { type Config } from '@master/css'
 import styles from './styles'
 
 export const config: Config = {
+  scope: '.normal',
   extends: [...styles],
   classes: {},
   colors: {},

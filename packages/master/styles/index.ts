@@ -1,71 +1,29 @@
 import { merge } from '@zy-kit/utils/obj'
+import { type Config } from '@master/css'
 
 // Base
-import { type Config } from '@master/css'
-import breakpoints from './base/breakpoints'
-import colors from './base/colors'
-import keyframes from './base/keyframes'
-import mediaQueries from './base/mediaQueries'
-import selectors from './base/selectors'
-import semantics from './base/semantics'
-import values from './base/values'
+import base from './base/_index'
 
 // Layouts
-import normal from './layouts/normal'
+import layouts from './layouts/_index'
 
 // Components
-import accordion from './components/accordion'
-import btn from './components/btn'
-import card from './components/card'
-import checkbox from './components/checkbox'
-import input from './components/input'
-import link from './components/link'
-import list from './components/list'
-import media from './components/media'
-import message from './components/message'
-import modal from './components/modal'
-import ratio from './components/ratio'
-import skeleton from './components/skeleton'
-import table from './components/table'
-import tabs from './components/tabs'
-import title from './components/title'
+import components from './components/_index'
 
-// Components - Vendor
-import elementPlus from './components/element-plus'
-import formkit from './components/formkit'
+// Vendors
+import elementPlus from './venders/element-plus'
+import formkit from './venders/formkit'
 
-const extendsConfig: NonNullable<Config['extends']> = [
-  merge(
-    // Base
-    breakpoints,
-    colors,
-    keyframes,
-    mediaQueries,
-    selectors,
-    semantics,
-    values,
-    // Layouts
-    normal,
-    // Components
-    accordion,
-    btn,
-    card,
-    checkbox,
-    input,
-    link,
-    list,
-    media,
-    message,
-    modal,
-    ratio,
-    skeleton,
-    table,
-    tabs,
-    title,
-    // Components - Vendor
-    elementPlus,
-    formkit
-  ),
-]
+const mergedConfig = merge<Config>(
+  // Base
+  ...Object.values(base),
+  // Layouts
+  ...Object.values(layouts),
+  // Components
+  ...Object.values(components),
+  // Vendors
+  elementPlus,
+  formkit
+)
 
-export default extendsConfig
+export default mergedConfig

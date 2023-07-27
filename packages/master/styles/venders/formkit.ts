@@ -10,10 +10,13 @@ const config: Config = {
       `,
       inner: $`rel`,
       input: {
-        '': toLine({
-          '[data-type="button"]_': $`bg:Y-50 {bg:Y-50/.9}:hover {bg:Y-50/.8}:active`,
-          '[data-type="submit"]_': $`bg:Y-50 {bg:Y-50/.9}:hover {bg:Y-50/.8}:active`,
-        }),
+        '': toLine(
+          {
+            '[data-type="button"]_': $`bg:Y-50 {bg:Y-50/.9}:hover {bg:Y-50/.8}:active`,
+            '[data-type="submit"]_': $`bg:Y-50 {bg:Y-50/.9}:hover {bg:Y-50/.8}:active`,
+          },
+          { scope: '#mcss' }
+        ),
       },
       'label-floating': {
         '': toLine({

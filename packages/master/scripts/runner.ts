@@ -1,3 +1,3 @@
-import cls from '../styles/components/formkit'
+import cls from '../styles/venders/formkit'
 
 console.log(cls.classes)

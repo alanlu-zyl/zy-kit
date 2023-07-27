@@ -34,7 +34,9 @@
   "i18n-ally.localesPaths": ["apps/**/locales"],
   "i18n-ally.keystyle": "nested",
 
-  "masterCSS.config": "packages/master/dist/master.css.cjs",
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
 
   "cSpell.words": [
     "antfu",
@@ -50,6 +52,8 @@
     "stylelint",
     "tsup",
     "unplugin",
+    "viewports",
     "vueuse"
   ]
+
 }

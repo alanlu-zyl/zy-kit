@@ -24,12 +24,12 @@
     "update": "pnpm update -r"
   },
   "dependencies": {
-    "@master/css-extractor": "2.0.0-beta.164",
-    "@master/css-extractor.vite": "2.0.0-beta.164",
-    "@master/css-server.nitro": "2.0.0-beta.164",
-    "@master/css-validator": "2.0.0-beta.164",
-    "@master/css.vue": "2.0.0-beta.164",
-    "class-variant": "2.0.0-beta.164"
+    "@master/css-extractor": "^2.0.0-beta.166",
+    "@master/css-extractor.vite": "^2.0.0-beta.166",
+    "@master/css-server.nitro": "^2.0.0-beta.166",
+    "@master/css-validator": "^2.0.0-beta.166",
+    "@master/css.vue": "^2.0.0-beta.166",
+    "class-variant": "^2.0.0-beta.166"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.6",

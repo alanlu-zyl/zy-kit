@@ -8,9 +8,22 @@
 function literal(strings: TemplateStringsArray, ...tokens: any[]): string {
   return strings
     .reduce((result, value, index) => result + value + (tokens[index] || ''), '')
-    .replace(/\/\*[^\/]*\*\//gm, '')
+    .replace(/\/\*[^\/]*\*\//gm, '') // 允許註解
     .replace(/(?:\n(?:\s*))+/g, ' ')
     .trim()
+}
+
+interface GroupConfig {
+  /** 先代選擇器 */
+  parent?: string
+  /** 樣式 */
+  cls: string
+  /** 後代選擇器 */
+  selector: string
+  /** 媒體選擇器 */
+  mq?: string
+  /** 範圍 */
+  scope?: string
 }
 
 /**
@@ -19,45 +32,67 @@ function literal(strings: TemplateStringsArray, ...tokens: any[]): string {
  * @param config - 用於生成 CSS 組字符串的配置對象。
  * @returns CSS 組字符串。
  */
-function group(config: {
-  // 父選擇器
-  parent?: string
-  // 選擇器
-  selector: string
-  // 樣式
-  cls: string
-  // 媒體查詢
-  mq?: string
-}): string {
-  const { parent, selector, cls, mq } = config
+function group(config: GroupConfig): string {
+  const { parent, selector, cls, mq, scope } = config
 
   const unitArr: string[] = []
   const otherGroup: string[] = []
 
+  // 依空格拆分
   cls.split(' ').forEach((target) => {
+    // 如果非群組，直接新增
     if (!target.includes('{')) {
       unitArr.push(target)
-    } else {
+    }
+    // 否則進行群組處理
+    else {
+      // 先代選擇器 群組樣式 後代選擇器
       const reg = /^(.+){0,1}{(.+)}(.+){0,1}$/
       const r = target.match(reg)!
 
-      let _mq = mq
-      let _selector = r[3] || ''
+      // 先代選擇器
+      let _parent: GroupConfig['parent'] = r[1] || ''
+      if (_parent) {
+        // 替換 _$
+        if (_parent.includes('_$') && parent) {
+          _parent = _parent.replace('_$', parent)
+        } else if (parent) {
+          _parent = parent + _parent
+        }
+      } else if (parent) {
+        _parent = parent
+      }
 
+      // 媒體選擇器
+      let _mq: GroupConfig['mq'] = mq || ''
+      // 後代選擇器
+      let _selector: GroupConfig['selector'] = r[3] || ''
+
+      // 後代選擇器為媒體查詢
       if (_selector[0] === '@') {
         _mq = _selector
         _selector = selector
-      } else {
-        _selector = _selector.includes('_$') ? _selector.replace('_$', selector) : selector + _selector
+      }
+
+      if (_selector) {
+        // 替換 _$
+        if (_selector.includes('_$') && selector) {
+          _selector = _selector.replace('_$', selector)
+        } else if (selector) {
+          _selector = selector + _selector
+        }
+      } else if (selector) {
+        _selector = selector
       }
 
       try {
         otherGroup.push(
           group({
-            parent: r[1] || parent,
-            selector: _selector,
+            parent: _parent,
             cls: r[2].split(';').join(' '),
+            selector: _selector,
             mq: _mq,
+            scope,
           })
         )
       } catch (error) {
@@ -68,27 +103,43 @@ function group(config: {
 
   const classes = unitArr.join(';')
 
-  return `${parent || ''}{${classes}}${selector}${mq || ''}${otherGroup.length ? ` ${otherGroup.join(' ')}` : ''}`
+  const buildCls = `${scope ? `${scope}_` : ''}${parent || ''}{${classes}}${selector || ''}${mq || ''}`
+
+  return `${buildCls}${otherGroup.length ? ` ${otherGroup.join(' ')}` : ''}`
+}
+
+interface ToLineOptions {
+  /** 範圍 */
+  scope: string
+  /** 是否印出結果 */
+  showLog: boolean
 }
 
 /**
- * 將具有鍵值對的對象轉換為 CSS 類的字符串。
+ * Generates a line of classes based on the given object and options.
  *
- * @param {Record<string, string>} obj - 包含鍵值對的對象。
- * @param {boolean} [showLog] - 可選標誌，指示是否將生成的類記錄到控制台。
- * @return {string} - CSS 類的字符串。
+ * @param {Record<string, string>} obj - The object containing the selectors and classes.
+ * @param {Partial<ToLineOptions>} [options={}] - The optional options for generating the line.
+ * @returns {string} - The generated line of classes.
  */
-function toLine(obj: Record<string, string>, showLog?: boolean): string {
+function toLine(obj: Record<string, string>, options: Partial<ToLineOptions> = {}): string {
   const classes = Object.entries(obj).reduce<string[]>((cls, [selector, classes]) => {
+    // 以下結尾視為先代選擇器
     if (['_', '>', '~', '+'].includes(selector.charAt(selector.length - 1))) {
-      classes = group({ parent: selector, selector: '', cls: classes })
-    } else if (['_', '>', '~', '+', ':', '[', '@'].includes(selector[0])) {
-      classes = group({ selector, cls: classes })
+      classes = group({ parent: selector, selector: '', cls: classes, scope: options?.scope })
+    }
+    // 以下開頭視為後代選擇器
+    else if (['_', '>', '~', '+', ':', '[', '@'].includes(selector[0])) {
+      classes = group({ selector, cls: classes, scope: options?.scope })
     }
 
     return cls.concat(classes)
   }, [])
-  if (showLog) console.log(classes)
+
+  // 印出結果
+  if (options.showLog) console.log(classes)
+
+  // 合併樣式
   return classes.join(' ')
 }
 

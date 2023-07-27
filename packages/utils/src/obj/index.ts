@@ -7,8 +7,8 @@ function isObject(obj: any) {
   return Object.prototype.toString.call(obj) === '[object Object]'
 }
 
-function merge(...objects: any[]) {
-  return objects.reduce((result, current) => {
+function merge<T extends object>(...objects: T[]): T {
+  return objects.reduce<T>((result, current) => {
     if (Array.isArray(current)) {
       throw new TypeError('Arguments provided to ts-deepmerge must be objects, not arrays.')
     }
@@ -24,7 +24,7 @@ function merge(...objects: any[]) {
     })
 
     return result
-  }, {})
+  }, {} as T)
 }
 const defaultOptions = { mergeArrays: true }
 merge.options = defaultOptions

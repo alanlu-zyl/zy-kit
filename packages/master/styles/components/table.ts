@@ -14,20 +14,20 @@ const config: Config = {
       `,
       body: $`
         bg:theme/.1
-        {max-h:50vh;overflow-y:auto}@sm
-        {max-h:75vh;overflow-y:auto}@<sm
+        {max-h:50vh;overflow-y:auto}@xs
+        {max-h:75vh;overflow-y:auto}@<xs
       `,
       tr: $`
         rel ai:center
         {bg:theme/.15}:nth-child(odd)
         {bb:1|theme/.3}:not(:last-of-type)
-        {border-bottom-width:2}:not(:last-of-type)@<sm
-        {grid-cols:$(cols,6);t:center}@sm
-        {grid-rows:$(rows,3);t:left}@<sm
+        {border-bottom-width:2}:not(:last-of-type)@<xs
+        {grid-cols:$(cols,6);t:center}@xs
+        {grid-rows:$(rows,3);t:left}@<xs
         {z:-1;content:'';abs-full;bg:theme;opacity:0;~opacity|.2s;untouchable}::before
         {opacity:.1;z:0}:hover::before
-        {p:1x}>div@sm
-        {p:0x}>div@<sm
+        {p:1x}>div@xs
+        {p:0x}>div@<xs
       `,
     },
   },

@@ -2,8 +2,8 @@ import { type Config } from '@master/css'
 
 const config: Config = {
   semantics: {
-    nowrap: { 'white-space': 'nowrap' },
-    pointer: { cursor: 'pointer', 'user-select': 'none' },
+    nowrap: { whiteSpace: 'nowrap' },
+    pointer: { cursor: 'pointer', userSelect: 'none' },
     abs: {
       full: {
         position: 'absolute',

@@ -16,8 +16,8 @@ const config: Config = {
       `,
       dialog: $`
         flex m:auto p:2x r:0x
-        min-w:3xs@2xs
-        w:full@<2xs
+        min-w:4xs@3xs
+        w:full@<3xs
         bg:bg-box
         shadow:xl
         transition-property:opacity,transform

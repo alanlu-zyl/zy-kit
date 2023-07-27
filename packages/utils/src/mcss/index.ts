@@ -24,6 +24,8 @@ interface GroupConfig {
   mq?: string
   /** 範圍 */
   scope?: string
+  /** 是否印出結果 */
+  showLog?: boolean
 }
 
 /**
@@ -126,18 +128,29 @@ function toLine(obj: Record<string, string>, options: Partial<ToLineOptions> = {
   const classes = Object.entries(obj).reduce<string[]>((cls, [selector, classes]) => {
     // 以下結尾視為先代選擇器
     if (['_', '>', '~', '+'].includes(selector.charAt(selector.length - 1))) {
-      classes = group({ parent: selector, selector: '', cls: classes, scope: options?.scope })
+      classes = group({
+        parent: selector,
+        selector: '',
+        cls: classes,
+        scope: options?.scope,
+        showLog: options?.showLog,
+      })
     }
     // 以下開頭視為後代選擇器
-    else if (['_', '>', '~', '+', ':', '[', '@'].includes(selector[0])) {
-      classes = group({ selector, cls: classes, scope: options?.scope })
+    else if (['_', '>', '~', '+', ':', '[', '@'].includes(selector[0]) || options?.scope) {
+      classes = group({
+        selector,
+        cls: classes,
+        scope: options?.scope,
+        showLog: options?.showLog,
+      })
     }
 
     return cls.concat(classes)
   }, [])
 
   // 印出結果
-  if (options.showLog) console.log(classes)
+  if (options.showLog) console.log('toLine', classes)
 
   // 合併樣式
   return classes.join(' ')

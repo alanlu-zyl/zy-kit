@@ -5,7 +5,7 @@ import { getDefaultFromProps } from '@zy-kit/utils/obj'
 
 export interface IProps extends DialogProps {
   header?: null | string | Component
-  component?: null | string | Component
+  content?: null | string | Component
   footer?: null | string | Component
   visible?: boolean | Ref<boolean>
 }
@@ -24,7 +24,8 @@ const emits = defineEmits<{
 }>()
 
 const localProps = computed(() => {
-  const { header, component, footer, visible, ...dialogProps } = props
+  // eslint-disable-next-line unused-imports/no-unused-vars
+  const { header, content, footer, visible, ...dialogProps } = props
   return {
     ...dialogProps,
     modelValue: unref(visible),
@@ -45,10 +46,10 @@ function handleCancel() {
   emits('cancel')
 }
 
-const componentRef = ref<any>()
+const contentRef = ref<any>()
 
 function handleConfirm() {
-  const submit: () => Promise<any> = componentRef.value?.submit || (() => Promise.resolve(true))
+  const submit: () => Promise<any> = contentRef.value?.submit || (() => Promise.resolve(true))
   submit().then((data) => emits('confirm', data))
 }
 </script>
@@ -67,20 +68,22 @@ function handleConfirm() {
     </template>
     <template #default>
       <slot>
-        <template v-if="typeof component === 'string'">
-          {{ component }}
+        <template v-if="typeof content === 'string'">
+          {{ content }}
         </template>
         <template v-else>
-          <component :is="component" ref="componentRef" @confirm="handleConfirm" @cancel="handleCancel"></component>
+          <component :is="content" ref="contentRef" @confirm="handleConfirm" @cancel="handleCancel"></component>
         </template>
       </slot>
     </template>
     <template #footer>
       <slot name="footer">
-        <div v-if="footer === undefined" class="flex jc:center">
-          <button class="btn" @click="handleCancel">取消</button>
-          <button class="btn btn-type--themes" @click="handleConfirm">確認</button>
-        </div>
+        <template v-if="footer === undefined">
+          <div class="inline-flex gap:1x">
+            <button class="btn" @click="handleCancel">{{ $t('cancel') }}</button>
+            <button class="btn btn-type--theme" @click="handleConfirm">{{ $t('confirm') }}</button>
+          </div>
+        </template>
         <template v-else-if="typeof footer === 'string'">
           {{ footer }}
         </template>

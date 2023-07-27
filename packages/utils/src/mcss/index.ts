@@ -13,6 +13,8 @@ function literal(strings: TemplateStringsArray, ...tokens: any[]): string {
     .trim()
 }
 
+const replacedSymbol = '_$'
+
 interface GroupConfig {
   /** 先代選擇器 */
   parent?: string
@@ -56,8 +58,8 @@ function group(config: GroupConfig): string {
       let _parent: GroupConfig['parent'] = r[1] || ''
       if (_parent) {
         // 替換 _$
-        if (_parent.includes('_$') && parent) {
-          _parent = _parent.replace('_$', parent)
+        if (_parent.includes(replacedSymbol) && parent) {
+          _parent = _parent.replace(replacedSymbol, parent)
         } else if (parent) {
           _parent = parent + _parent
         }
@@ -78,8 +80,8 @@ function group(config: GroupConfig): string {
 
       if (_selector) {
         // 替換 _$
-        if (_selector.includes('_$') && selector) {
-          _selector = _selector.replace('_$', selector)
+        if (_selector.includes(replacedSymbol) && selector) {
+          _selector = _selector.replace(replacedSymbol, selector)
         } else if (selector) {
           _selector = selector + _selector
         }
@@ -126,8 +128,9 @@ interface ToLineOptions {
  */
 function toLine(obj: Record<string, string>, options: Partial<ToLineOptions> = {}): string {
   const classes = Object.entries(obj).reduce<string[]>((cls, [selector, classes]) => {
+    const temp = selector.replace(replacedSymbol, '')
     // 以下結尾視為先代選擇器
-    if (['_', '>', '~', '+'].includes(selector.charAt(selector.length - 1))) {
+    if (['_', '>', '~', '+'].includes(temp.charAt(temp.length - 1))) {
       classes = group({
         parent: selector,
         selector: '',
@@ -137,7 +140,7 @@ function toLine(obj: Record<string, string>, options: Partial<ToLineOptions> = {
       })
     }
     // 以下開頭視為後代選擇器
-    else if (['_', '>', '~', '+', ':', '[', '@'].includes(selector[0]) || options?.scope) {
+    else if (['_', '>', '~', '+', ':', '[', '@'].includes(temp[0]) || options?.scope) {
       classes = group({
         selector,
         cls: classes,

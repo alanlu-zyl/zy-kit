@@ -16,7 +16,7 @@ const config: Config = {
     info: '#2F80ED',
     link: '#0F62FE #529CCA@dark',
 
-    theme: { '': '#666666 #333333@dark', fg: '#FFFFFF #EEEEEE@dark' },
+    theme: { '': '#FBC700', fg: '#FFFFFF #EEEEEE@dark' },
     fg: { '': '#333333 #EEEEEE@dark' },
     bg: { '': '#FEFEFE #CCCCCC@dark', box: '#FEFEFE #777777@dark', btn: '#FEFEFE #777777@dark' },
   },

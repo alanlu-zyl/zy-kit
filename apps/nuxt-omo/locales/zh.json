@@ -12,5 +12,8 @@
   "logIn": "登入",
   "proceedToTransfer": "前往轉移",
   "transferInstructions": "轉移說明",
-  "joinOMONow": "立即加入OMO會員"
+  "joinOMONow": "立即加入OMO會員",
+  "cancel": "取消",
+  "confirm": "確認",
+  "go": "前往"
 }

@@ -1,31 +1,40 @@
 import { type Config } from '@master/css'
-import { $ } from '@zy-kit/utils/mcss'
+import { $, toLine } from '@zy-kit/utils/mcss'
 
 const config: Config = {
   classes: {
     btn: {
-      '': $`
-        box:border rel overflow:hidden
-        inline-flex center-content gap:1x
-        p:0x|1x r:inherit w:inherit h:inherit
-        f:inherit fg:$(fg,inherit) bg:$(bg,inherit)
-        t:center vertical-align:middle
-        text-transform:inherit text:none white-space:nowrap
-        b:1|$(border,G-50)
-        ~.2s transition-property:color,background,border-color,box-shadow
-        pointer outline:none
-        pointer-events:all
-        untouchable>*
-
-        {z:1;fg:$(theme,theme);border-color:$(theme,theme)}:is(:not([disabled]):hover,:focus-within)
-
-        {opacity:.6;cursor:not-allowed;}:is([disabled],[readonly],[loading])
-        {bg:B-50/.1}:not([class*="btn-type--"])[disabled]
-
-        {content:'';untouchable;abs;full;middle;center;bg:$(fg,theme);opacity:0;~opacity|.2s}::before
-        {opacity:.1}:not([disabled]):active::before
-
-        :host(:empty)_{p:1x}
+      '': toLine({
+        '': $`
+          box:border rel overflow:hidden
+          inline-flex center-content gap:1x
+          p:0x|1x r:1x
+          w:inherit h:inherit
+          f:inherit t:center vertical-align:middle
+          text-transform:inherit text:none white-space:nowrap
+          fg:$(fg,inherit) bg:$(bg,inherit) b:1|$(border,G-50/.5)
+          ~.2s transition-property:color,background,border-color,box-shadow
+          pointer outline:none
+          pointer-events:all
+        `,
+        // 焦點
+        ':is(:not([disabled]):hover,:focus-within)': $`z:1 fg:$(theme,inherit) border-color:$(theme,G-50/.7)`,
+        // 禁用
+        ':is([disabled],[readonly],[loading])': $`opacity:.6 cursor:not-allowed`,
+        // 預設禁用
+        ':not([class*="btn-type--"])[disabled]': $`bg:B-50/.1`,
+        // 背景
+        '::before': toLine(
+          {
+            '': $`content:'' untouchable abs full middle center bg:$(fg,G-50) opacity:0 ~opacity|.2s`,
+            ':not([disabled]):active_$': $`opacity:.1`,
+          },
+          { showLog: true }
+        ),
+        '>*': $`untouchable`,
+      }),
+      '-noborder': $`
+        b:0 p:calc(0x+1)|calc(1x+1)!
       `,
       '-ripple': $`
         {content:'';untouchable;abs;full;top:$(y,50%);left:$(x,50%);bg:no-repeat;bg:center}::after
@@ -33,16 +42,15 @@ const config: Config = {
         {transform:translate(-50%,-50%)|scale(10);opacity:0;~transform|.2s,opacity|.8s}::after
         {transform:translate(-50%,-50%)|scale(0);opacity:.3;~none}:not([disabled]):active::after
       `,
-      '-noborder': $`
-        b:0 p:calc(0x+1)|calc(1x+1)!
-        :host(:empty)_{p:1x!}
-      `,
       type: {
         '-dashed': $`border-style:dashed`,
-        '-outline': $`
-          fg:$(theme,theme)! border-color:$(theme,theme)
-          {bg:$(theme,theme)!}::before
-        `,
+        '-outline': toLine({
+          '': $`fg:$(theme,theme)! border-color:$(theme,theme)`,
+          // 焦點
+          ':is(:not([disabled]):hover,:focus-within)': $`border-color:$(theme,theme)!`,
+          // 背景
+          '::before': $`bg:$(theme,theme)!`,
+        }),
         '-font': $`
           btn--noborder
           {content:unset!}::before

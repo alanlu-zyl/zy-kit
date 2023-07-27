@@ -28,6 +28,44 @@ const [zodPlugin, submitHandler] = createZodPlugin(zodSchema, async (formData) =
   })
 })
 
+const { t } = useI18n()
+
+const formSchema = computed(() => {
+  return [
+    {
+      $formkit: 'text',
+      name: 'account',
+      validation: 'required|email_phone',
+      validationLabel: t('account'),
+      placeholder: t('account'),
+    },
+    {
+      $formkit: 'password',
+      name: 'password',
+      validation: 'required|length:6',
+      validationLabel: t('password'),
+      placeholder: t('password'),
+    },
+  ]
+})
+
+/*
+<FormKit type="text" name="account" validation="required|email_phone" :validation-label="$t('account')" :placeholder="$t('account')"></FormKit>
+<FormKit type="password" name="password" validation="required|length:6" :validation-label="$t('password')" :placeholder="$t('password')"></FormKit>
+<div class="flex ai:start f:14">
+  <FormKit v-show="values.currentTab !== 'oldTransfer'" type="checkbox" name="rememberAccount" :label="$t('rememberAccount')"></FormKit>
+  <nuxt-link to="#" class="ml:auto link content:initial!:not(:hover):before fg:gray!">{{ $t('forgotPassword') }}</nuxt-link>
+</div>
+
+<template v-if="values.currentTab !== 'oldTransfer'">
+  <FormKit :classes="{ input: 'w:full! mt:4x! f:bold' }" type="submit">{{ $t('logIn') }}</FormKit>
+</template>
+<template v-else>
+  <FormKit :classes="{ input: 'w:full! mt:4x! f:bold' }" type="submit">{{ $t('immediateTransfer') }}</FormKit>
+</template>
+
+*/
+
 const values = reactive<{ currentTab: 'omo' | 'old' | 'oldTransfer' }>({
   currentTab: 'omo',
 })
@@ -55,20 +93,22 @@ onBeforeMount(() => {
     visible: false,
     showClose: false,
     destroyOnClose: false,
-    rootClass: toLine({
-      '_.el-dialog': $`max-w:300`,
-      '_.el-dialog__header': $`p:2x|2x|0 m:0`,
-      '_.el-dialog__body': $`p:1x|2x`,
+    customClass: toLine({
+      '': $`max-w:300`,
+      '>header': $`p:2x|2x|0 m:0`,
+      '>div': $`p:1x|2x!`,
+      '>footer_.btn': $`min-w:100`,
     }),
-    header: () => <h3 class="t:center">提示</h3>,
-    component: () => <p>即將離開此頁面並前往燦坤 OMO 會員轉移頁面 https://Tk3c@tt.com/2LlZ1n</p>,
+    center: true,
+    header: '提示',
+    content: '即將離開此頁面並前往燦坤 OMO 會員轉移頁面 https://Tk3c@tt.com/2LlZ1n',
   })
   joinOMOModel.mount()
 })
 </script>
 
 <template>
-  <div class="card m:auto max-w:3xs">
+  <div class="card m:auto max-w:4xs">
     <div class="rel t:center z:1">
       <Icon name="TkIcon" size="90" />
       <div class="abs-center-x z:-1">
@@ -93,19 +133,7 @@ onBeforeMount(() => {
       </div>
       <div class="mt:3x">
         <FormKit type="form" :actions="false" :plugins="[zodPlugin]" @submit="submitHandler">
-          <FormKit type="text" name="account" validation="required|email_phone" :validation-label="$t('account')" :placeholder="$t('account')"></FormKit>
-          <FormKit type="password" name="password" validation="required|length:6" :validation-label="$t('password')" :placeholder="$t('password')"></FormKit>
-          <div class="flex ai:start f:14">
-            <FormKit v-show="values.currentTab !== 'oldTransfer'" type="checkbox" name="rememberAccount" :label="$t('rememberAccount')"></FormKit>
-            <nuxt-link to="#" class="ml:auto link content:initial!:not(:hover):before fg:gray!">{{ $t('forgotPassword') }}</nuxt-link>
-          </div>
-
-          <template v-if="values.currentTab !== 'oldTransfer'">
-            <FormKit :classes="{ input: 'w:full! mt:4x! f:bold' }" type="submit">{{ $t('logIn') }}</FormKit>
-          </template>
-          <template v-else>
-            <FormKit :classes="{ input: 'w:full! mt:4x! f:bold' }" type="submit">{{ $t('immediateTransfer') }}</FormKit>
-          </template>
+          <FormKitSchema :schema="formSchema"></FormKitSchema>
         </FormKit>
       </div>
 

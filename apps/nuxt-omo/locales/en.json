@@ -12,5 +12,8 @@
   "logIn": "Log In",
   "proceedToTransfer": "Proceed to Transfer",
   "transferInstructions": "Transfer Instructions",
-  "joinOMONow": "Join OMO Now"
+  "joinOMONow": "Join OMO Now",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "go": "Go"
 }

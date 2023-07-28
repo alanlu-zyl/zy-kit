@@ -7,8 +7,8 @@ const config: Config = {
       '': toLine({
         '': $`
           box:border rel overflow:hidden
-          inline-flex center-content gap:1x
-          p:0x|1x r:1x
+          inline-flex center-content gap:2x
+          p:1x|2x r:2x
           w:inherit h:inherit
           f:inherit t:center vertical-align:middle
           text-transform:inherit text:none white-space:nowrap
@@ -24,17 +24,14 @@ const config: Config = {
         // 預設禁用
         ':not([class*="btn-type--"])[disabled]': $`bg:B-50/.1`,
         // 背景
-        '::before': toLine(
-          {
-            '': $`content:'' untouchable abs full middle center bg:$(fg,G-50) opacity:0 ~opacity|.2s`,
-            ':not([disabled]):active_$': $`opacity:.1`,
-          },
-          { showLog: true }
-        ),
+        '::before': toLine({
+          '': $`content:'' untouchable abs full middle center bg:$(fg,G-50) opacity:0 ~opacity|.2s`,
+          ':not([disabled]):active_$': $`opacity:.1`,
+        }),
         '>*': $`untouchable`,
       }),
       '-noborder': $`
-        b:0 p:calc(0x+1)|calc(1x+1)!
+        b:0 p:calc(1x+1)|calc(2x+1)!
       `,
       '-ripple': $`
         {content:'';untouchable;abs;full;top:$(y,50%);left:$(x,50%);bg:no-repeat;bg:center}::after

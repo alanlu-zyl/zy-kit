@@ -2,11 +2,13 @@ import { createInput, defineFormKitConfig } from '@formkit/vue'
 import { zhTW } from '@formkit/i18n'
 import { genesisIcons } from '@formkit/icons'
 
+import { loadIcon } from '@iconify/vue'
+
 // import { createProPlugin, inputs } from '@formkit/pro'
 
 import '@formkit/themes/genesis'
 
-import { email_phone } from '../formkit/rules'
+import { email_phone, email_phone_id } from '../formkit/rules'
 import OneTimePassword from '../formkit/OneTimePassword.vue'
 import { floatingLabelTextInput } from '../formkit/floatingLabelTextInput'
 
@@ -25,21 +27,42 @@ export default defineFormKitConfig(() => {
 
     // 圖示
     icons: { ...genesisIcons },
-
-    rules: { email_phone },
+    iconLoader: (name) => {
+      return loadIcon(name).then((qq) => {
+        console.log(qq)
+        return `
+          <svg width="${qq.width}" height="${qq.height}" viewBox="0 0 ${qq.width} ${qq.height}" fill="none" xmlns="http://www.w3.org/2000/svg">
+            ${qq.body}
+          </svg>
+        `
+      })
+    },
+    rules: { email_phone, email_phone_id },
 
     messages: {
       en: {
         validation: {
+          phone({ name }) {
+            return ` ${name} Please enter a phone number.`
+          },
           email_phone({ name }) {
             return ` ${name} Please enter an email or phone number.`
+          },
+          email_phone_id({ name }) {
+            return ` ${name} Please enter an email or phone number or ID.`
           },
         },
       },
       zh: {
         validation: {
+          phone({ name }) {
+            return ` ${name} 請輸入手機號碼`
+          },
           email_phone({ name }) {
             return ` ${name} 請輸入信箱或手機號碼`
+          },
+          email_phone_id({ name }) {
+            return ` ${name} 請輸入信箱或手機號碼或會員編號`
           },
         },
       },

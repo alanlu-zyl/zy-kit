@@ -6,8 +6,8 @@ const config: Config = {
     // 卡片
     card: {
       '': $`
-        my:2x p:2x|3x
-        r:1x overflow:hidden
+        my:4x p:4x|6x
+        r:2x overflow:hidden
         bg:bg-box
         shadow:lg
       `,

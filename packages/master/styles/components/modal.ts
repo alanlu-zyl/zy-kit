@@ -7,7 +7,7 @@ const config: Config = {
       '': $`
         z:modal
         flex fixed middle center
-        p:1x
+        p:2x
         overflow-x:hidden overflow-y:auto outline:none
         bg:B-50/.3
         opacity:0 invisible
@@ -15,8 +15,8 @@ const config: Config = {
         {opacity:1;visible}[open]
       `,
       dialog: $`
-        flex m:auto p:2x r:0x
-        min-w:4xs@3xs
+        flex m:auto p:4x r:1x
+        min-w:8xs@3xs
         w:full@<3xs
         bg:bg-box
         shadow:xl
@@ -28,24 +28,24 @@ const config: Config = {
       `,
       close: $`
         abs top:0 right:0 flex
-        w:2x h:2x f:3x font-family:none
+        w:4x h:4x f:6x font-family:none
       `,
     },
     dialog: {
       type: $`
-        hide f:30 {block;mr:1x}[icon]
+        hide f:30 {block;mr:2x}[icon]
       `,
       content: $`
         rel w:full
       `,
       title: $`
-        mb:1x f:24 f:bolder lh:1.2 user-select:none
+        mb:2x f:24 f:bolder lh:1.2 user-select:none
       `,
       body: $`
         min-h:50 overflow:auto
       `,
       footer: $`
-        mt:1x t:right user-select:none
+        mt:2x t:right user-select:none
       `,
     },
   },

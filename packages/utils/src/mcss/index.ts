@@ -140,7 +140,7 @@ function toLine(obj: Record<string, string>, options: Partial<ToLineOptions> = {
       })
     }
     // 以下開頭視為後代選擇器
-    else if (['_', '>', '~', '+', ':', '[', '@'].includes(temp[0]) || options?.scope) {
+    else if (['_', '>', '~', '+', ':', '[', '@', '!'].includes(temp[0]) || options?.scope) {
       classes = group({
         selector,
         cls: classes,

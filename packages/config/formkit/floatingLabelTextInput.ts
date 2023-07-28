@@ -1,11 +1,7 @@
-import { $attrs, help, icon, inner, label, message, messages, outer, prefix, suffix, textInput, wrapper } from '@formkit/inputs'
+import { $attrs, $if, buttonInput, buttonLabel, help, icon, inner, label, message, messages, outer, prefix, suffix, textInput, wrapper } from '@formkit/inputs'
 import { type FormKitTypeDefinition } from '@formkit/core'
 
-/**
- * Input definition for a text.
- * @public
- */
-export const floatingLabelTextInput: FormKitTypeDefinition = {
+const floatingLabel: FormKitTypeDefinition = {
   schema: outer(
     wrapper(
       /*
@@ -16,7 +12,13 @@ export const floatingLabelTextInput: FormKitTypeDefinition = {
       inner(
         icon('prefix', 'label'),
         prefix(),
-        textInput(),
+        $attrs(
+          {
+            class: `formkit-input`,
+            type: '$inputType || "text"',
+          },
+          textInput()
+        ),
         /*
          * New label placemenet
          */
@@ -27,6 +29,16 @@ export const floatingLabelTextInput: FormKitTypeDefinition = {
             for: '$id',
           },
           label('$label')
+        ),
+        $if(
+          '$showRightBtn',
+          $attrs(
+            {
+              id: null,
+              class: 'btn btn-type--flat r:0! h:full! {p:2x|6x}!.btn bl:1|G-20 min-w:100',
+            },
+            buttonInput(buttonLabel('$rightBtnText'))
+          )
         ),
         suffix(),
         icon('suffix')
@@ -42,9 +54,15 @@ export const floatingLabelTextInput: FormKitTypeDefinition = {
   /**
    * An array of extra props to accept for this input.
    */
-  props: [],
+  props: ['inputType', 'showRightBtn', 'rightBtnText'],
   /**
    * Additional features that should be added to your input
    */
   features: [],
 }
+
+/**
+ * Input definition for a text.
+ * @public
+ */
+export const floatingLabelTextInput = floatingLabel

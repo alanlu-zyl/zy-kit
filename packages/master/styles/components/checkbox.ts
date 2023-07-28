@@ -6,12 +6,12 @@ const config: Config = {
     checkbox: {
       label: $`
         box:border outline:0 pointer
-        flex ai:center gap:1x
+        flex ai:center gap:2x
       `,
       checked: {
         '': $`
           box:border rel
-          flex center-content r:0x
+          flex center-content r:1x
           w:1em h:1em
           ~.2s
           :not([disabled]):hover_{z:1}

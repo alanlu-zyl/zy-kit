@@ -93,9 +93,10 @@ export function useCommandComponent<T extends Component>(Component: T) {
     const initVisible = options?.visible ?? true
     options.visible = ref(initVisible)
 
+    mount()
+
     if (initVisible) {
       open()
-      mount()
     }
 
     return { unmount, mount, open, close }

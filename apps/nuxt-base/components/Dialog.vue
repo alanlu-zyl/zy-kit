@@ -3,12 +3,6 @@ import type { DialogProps } from 'element-plus'
 import { ElDialog } from 'element-plus'
 import { getDefaultFromProps } from '@zy-kit/utils/obj'
 
-export interface IProps extends DialogProps {
-  header?: null | string | Component
-  content?: null | string | Component
-  footer?: null | string | Component
-  visible?: boolean | Ref<boolean>
-}
 const props = withDefaults(defineProps<IProps>(), getDefaultFromProps(ElDialog.props, {}))
 
 const emits = defineEmits<{
@@ -23,6 +17,14 @@ const emits = defineEmits<{
   (event: 'confirm', data: any): void
 }>()
 
+export interface IProps extends DialogProps {
+  header?: null | string | Component
+  content?: null | string | Component
+  footer?: null | string | Component
+  visible?: boolean | Ref<boolean>
+  cancelText?: string
+  confirmText?: string
+}
 const localProps = computed(() => {
   // eslint-disable-next-line unused-imports/no-unused-vars
   const { header, content, footer, visible, ...dialogProps } = props
@@ -79,9 +81,9 @@ function handleConfirm() {
     <template #footer>
       <slot name="footer">
         <template v-if="footer === undefined">
-          <div class="inline-flex gap:1x">
-            <button class="btn" @click="handleCancel">{{ $t('cancel') }}</button>
-            <button class="btn btn-type--theme" @click="handleConfirm">{{ $t('confirm') }}</button>
+          <div class="inline-flex gap:2x">
+            <button class="btn" @click="handleCancel">{{ cancelText || $t('cancel') }}</button>
+            <button class="btn btn-type--theme" @click="handleConfirm">{{ confirmText || $t('confirm') }}</button>
           </div>
         </template>
         <template v-else-if="typeof footer === 'string'">

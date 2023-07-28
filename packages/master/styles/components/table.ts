@@ -7,7 +7,7 @@ const config: Config = {
     table: {
       head: $`
         grid-cols:$(cols,6)
-        p:1x
+        p:2x
         f:heavy t:center
         fg:theme
         bg:theme/.4
@@ -26,8 +26,8 @@ const config: Config = {
         {grid-rows:$(rows,3);t:left}@<xs
         {z:-1;content:'';abs-full;bg:theme;opacity:0;~opacity|.2s;untouchable}::before
         {opacity:.1;z:0}:hover::before
-        {p:1x}>div@xs
-        {p:0x}>div@<xs
+        {p:2x}>div@xs
+        {p:1x}>div@<xs
       `,
     },
   },

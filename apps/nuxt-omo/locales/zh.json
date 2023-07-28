@@ -4,9 +4,15 @@
   "omoMemberTransfer": "OMO 會員轉移",
   "oldMemberTransfer": "舊會員轉移",
   "oldMemberLogin": "舊會員登入",
-  "immediateTransfer": "前往轉移",
   "account": "手機/Email",
+  "phone": "手機",
+  "phoneNumber": "手機號碼",
+  "email": "Email",
+  "omoAccount": "手機/Email/ID",
   "password": "密碼",
+  "verifyCode": "驗證碼",
+  "getVerifyCode": "取得驗證碼",
+  "nextStep": "下一步",
   "rememberAccount": "記住帳號",
   "forgotPassword": "忘記密碼?",
   "logIn": "登入",
@@ -15,5 +21,5 @@
   "joinOMONow": "立即加入OMO會員",
   "cancel": "取消",
   "confirm": "確認",
-  "go": "前往"
+  "reconsider": "再考慮"
 }

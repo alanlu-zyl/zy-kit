@@ -17,6 +17,7 @@ useSeoMeta({
   // ogImage: 'https://example.com/image.png',
 })
 
+const route = useRoute()
 const { locale } = useI18n()
 
 const config: DefaultConfigOptions = inject(Symbol.for('FormKitConfig'))!
@@ -27,6 +28,18 @@ watch(locale, (newVal) => {
 
 <template>
   <CSSProvider>
+    <div class="bb:1|gray">
+      <form>
+        <select v-model="locale">
+          <option value="zh">zh</option>
+          <option value="en">en</option>
+        </select>
+      </form>
+      <div>
+        Current route: <code>{{ route.path }}</code>
+      </div>
+      <NuxtLink to="/login">Login</NuxtLink>
+    </div>
     <NuxtLayout>
       <NuxtLoadingIndicator />
       <NuxtPage />

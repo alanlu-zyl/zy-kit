@@ -6,7 +6,7 @@ const config: Config = {
     el: {
       dialog: toLine(
         {
-          '': $`r:1x overflow:hidden`,
+          '': $`r:2x overflow:hidden`,
         },
         { scope: '#mcss' }
       ),

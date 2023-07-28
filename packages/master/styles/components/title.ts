@@ -6,7 +6,7 @@ const config: Config = {
     // 題目
     subject: {
       '': toLine({
-        '': $`flex center-content gap:2x {flex:1}::before,::after`,
+        '': $`flex center-content gap:4x {flex:1}::before,::after`,
         '::before,::after': $`content:'' bt:1|solid opacity:.2`,
       }),
       block: toLine({

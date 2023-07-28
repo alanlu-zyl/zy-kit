@@ -6,7 +6,7 @@ const config: Config = {
     ratio: {
       label: $`
         box:border outline:0 pointer
-        flex ai:center gap:1x
+        flex ai:center gap:2x
       `,
       checked: {
         '': $`
@@ -19,7 +19,7 @@ const config: Config = {
           {opacity:.2;scale(0);~.2s|cubic-bezier(.12,.4,.29,1.46)|.1s}::before
           #radio:focus-visible+label_{scale(2.5)}::before
 
-          {box:border;content:'';abs;center;middle;w:1x;h:1x;round;bg:$(theme)}::after
+          {box:border;content:'';abs;center;middle;w:2x;h:2x;round;bg:$(theme)}::after
           {~.2s|cubic-bezier(.12,.4,.29,1.46)|.1s}::after
         `,
         '-default': $`

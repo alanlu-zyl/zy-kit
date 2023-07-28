@@ -20,7 +20,7 @@ const config: Config = {
       title: toLine({
         '': $`rel pointer`,
         '::after': toLine({
-          '': "content:'+' abs right:1x",
+          '': "content:'+' abs right:2x",
           ':checked~': "content:'-'",
         }),
       }),
@@ -28,7 +28,7 @@ const config: Config = {
       content: toLine({
         '': $`grid grid-template-rows:0fr opacity:0 overflow:hidden`,
         transition: $`~.2s transition-property:grid-template-rows,opacity,padding`,
-        ':checked~': $`grid-template-rows:1fr opacity:1 py:1x`,
+        ':checked~': $`grid-template-rows:1fr opacity:1 py:2x`,
       }),
     },
   },

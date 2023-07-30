@@ -35,7 +35,11 @@ onBeforeMount(() => {
   })
 })
 
-const data = reactive<{ currentTab: 'omo' | 'old' | 'oldTransfer' }>({
+interface schemaData {
+  currentTab: 'omo' | 'old' | 'oldTransfer'
+}
+
+const data = reactive<schemaData>({
   currentTab: 'omo',
 })
 

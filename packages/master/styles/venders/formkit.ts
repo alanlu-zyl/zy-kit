@@ -13,18 +13,10 @@ const config: Config = {
         },
         { scope: '#mcss' }
       ),
-      inner: toLine(
-        {
-          '': $`
-            r:1x
-          `,
-        },
-        { scope: '#mcss' }
-      ),
       input: {
         '': toLine(
           {
-            '': $`r:1x p:2x|3x`,
+            '': $`r:1x`,
             '[data-type="button"]_': $`r:2x bg:Y-50 {bg:Y-50/.9}:hover {bg:Y-50/.8}:active`,
             '[data-type="submit"]_': $`r:2x bg:Y-50 {bg:Y-50/.9}:hover {bg:Y-50/.8}:active`,
           },
@@ -40,19 +32,19 @@ const config: Config = {
         ),
       },
       label: {
-        '': toLine(
-          {
-            '[data-floating-label="true"]_': $`
-              left:1x
-              bottom:calc(100%-1x)
-              _$$_input:focus~{bottom:100%}
-              _$$_textarea:focus~{bottom:100%}
-              _$$:not([data-empty='true']){bottom:100%}
-              _$$[data-expanded='true']{bottom:100%}
-            `,
-          },
-          { scope: '#mcss' }
-        ),
+        // '': toLine(
+        //   {
+        //     '[data-floating-label="true"]_': $`
+        //       left:1x
+        //       bottom:calc(100%-1x)
+        //       _$$_input:focus~{bottom:100%}
+        //       _$$_textarea:focus~{bottom:100%}
+        //       _$$:not([data-empty='true']){bottom:100%}
+        //       _$$[data-expanded='true']{bottom:100%}
+        //     `,
+        //   },
+        //   { scope: '#mcss' }
+        // ),
       },
     },
   },

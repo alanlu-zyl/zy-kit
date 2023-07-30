@@ -17,10 +17,10 @@ const data = reactive<{ currentTab: 'phone' | 'email' }>({
 const schema = computed((): FormKitSchemaNode[] => {
   return [
     {
-      $formkit: 'floatingLabelTextInput',
+      $formkit: 'text',
       name: 'account',
-      showRightBtn: true,
-      rightBtnText: t('getVerifyCode'),
+      // showRightBtn: true,
+      // rightBtnText: t('getVerifyCode'),
       label: data.currentTab === 'phone' ? t('phoneNumber') : t('email'),
       validationLabel: data.currentTab === 'phone' ? t('phoneNumber') : t('email'),
       validation: data.currentTab === 'phone' ? 'required|phone' : 'required|email',
@@ -31,7 +31,7 @@ const schema = computed((): FormKitSchemaNode[] => {
       validation: 'required|length:6',
       inputmode: 'numeric',
       autocomplete: 'off',
-      placeholder: t('verifyCode'),
+      label: t('verifyCode'),
       validationLabel: t('verifyCode'),
     },
     {

@@ -17,8 +17,6 @@ const config: Config = {
         {
           '': $`
             r:1x
-            shadow:0|0|0|1|G-30/.5
-            shadow:0|0|0|1|G-30:focus-within
           `,
         },
         { scope: '#mcss' }
@@ -27,7 +25,7 @@ const config: Config = {
         '': toLine(
           {
             '': $`r:1x p:2x|3x`,
-            '[data-type="button"]_': $`r:2x g:Y-50 {bg:Y-50/.9}:hover {bg:Y-50/.8}:active`,
+            '[data-type="button"]_': $`r:2x bg:Y-50 {bg:Y-50/.9}:hover {bg:Y-50/.8}:active`,
             '[data-type="submit"]_': $`r:2x bg:Y-50 {bg:Y-50/.9}:hover {bg:Y-50/.8}:active`,
           },
           { scope: '#mcss' }
@@ -41,24 +39,20 @@ const config: Config = {
           { scope: '#mcss' }
         ),
       },
-      'label-floating': {
-        '': toLine({
-          '': $`
-            box:border p:1x
-            abs left:0x bottom:calc(100%-0x) translateY(100%)
-            fg:grey
-            ~all|.25s
-          `,
-          // 'input:not(empty)': 'formkit-label-floating--floating',
-          '.formkit-prefix-icon~': 'left:45',
-          'input:focus~': 'formkit-label-floating--floating',
-          'textarea:focus~': 'formkit-label-floating--floating',
-          '[data-has-value="true"]': 'formkit-label-floating--floating',
-        }),
-        '-floating': $`
-          font-size:.7em bg:white
-          bottom:100% translateY(50%)
-        `,
+      label: {
+        '': toLine(
+          {
+            '[data-floating-label="true"]_': $`
+              left:1x
+              bottom:calc(100%-1x)
+              _$$_input:focus~{bottom:100%}
+              _$$_textarea:focus~{bottom:100%}
+              _$$:not([data-empty='true']){bottom:100%}
+              _$$[data-expanded='true']{bottom:100%}
+            `,
+          },
+          { scope: '#mcss' }
+        ),
       },
     },
   },

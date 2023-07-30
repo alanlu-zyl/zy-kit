@@ -46,15 +46,14 @@ const library = markRaw({
 const schema = computed((): FormKitSchemaNode[] => {
   return [
     {
-      $formkit: 'floatingLabelTextInput',
+      $formkit: 'text',
       name: 'account',
       label: data.currentTab === 'omo' ? t('omoAccount') : t('account'),
       validationLabel: data.currentTab === 'omo' ? t('omoAccount') : t('account'),
       validation: data.currentTab === 'omo' ? 'required|email_phone_id' : 'required|email_phone',
     },
     {
-      $formkit: 'floatingLabelTextInput',
-      inputType: 'password',
+      $formkit: 'password',
       name: 'password',
       label: t('password'),
       validationLabel: t('password'),

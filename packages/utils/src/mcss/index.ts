@@ -14,6 +14,7 @@ function literal(strings: TemplateStringsArray, ...tokens: any[]): string {
 }
 
 const replacedSymbol = '_$'
+const replacedConnectMainSymbol = '_$$'
 
 interface GroupConfig {
   /** 先代選擇器 */
@@ -57,8 +58,10 @@ function group(config: GroupConfig): string {
       // 先代選擇器
       let _parent: GroupConfig['parent'] = r[1] || ''
       if (_parent) {
-        // 替換 _$
-        if (_parent.includes(replacedSymbol) && parent) {
+        if (_parent.includes(replacedConnectMainSymbol) && parent) {
+          const [lastCharacter, previousCharacters] = [parent.slice(-1), parent.slice(0, -1)]
+          _parent = _parent.replace(replacedConnectMainSymbol, previousCharacters) + lastCharacter
+        } else if (_parent.includes(replacedSymbol) && parent) {
           _parent = _parent.replace(replacedSymbol, parent)
         } else if (parent) {
           _parent = parent + _parent

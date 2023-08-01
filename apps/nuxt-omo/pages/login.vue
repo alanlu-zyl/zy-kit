@@ -11,6 +11,8 @@ import { Dialog, NuxtLink } from '#components'
 
 // i18n
 const { t } = useI18n()
+const localePath = useLocalePath() // composable from 'vue-i18n-routing'
+
 // Dialog
 const createDialog = useCommandComponent(Dialog)
 
@@ -37,15 +39,6 @@ interface ISchemaData {
 }
 const data = reactive<ISchemaData>({
   currentTab: 'omo',
-})
-
-interface IFormData {
-  account: string
-  password: string
-}
-const formData = reactive<IFormData>({
-  account: '',
-  password: '',
 })
 
 const zodSchema = z.object({
@@ -114,7 +107,7 @@ const schema = computed((): FormKitSchemaNode[] => {
           attrs: { class: 'flex ai:start f:14' },
           children: [
             { $formkit: 'checkbox', name: 'rememberAccount', label: t('rememberAccount'), if: '$currentTab !== "oldTransfer"' },
-            { $cmp: 'NuxtLink', props: { class: 'ml:auto link content:initial!:not(:hover):before fg:gray!', to: '/forgetPassword' }, children: [t('forgotPassword')] },
+            { $cmp: 'NuxtLink', props: { class: 'ml:auto link content:initial!:not(:hover):before fg:gray!', to: localePath('/forgotPassword') }, children: [`${t('forgotPassword.title')}?`] },
           ],
         },
         { $formkit: 'submit', classes: { input: 'w:full! mt:8x! f:bold' }, children: [data.currentTab !== 'oldTransfer' ? t('logIn') : t('proceedToTransfer')] },
@@ -148,10 +141,10 @@ const transitionBind = computed((): TransitionProps => {
       <div class="mb:6x h:40 flex center-content w:full>div">
         <Transition v-bind="transitionBind">
           <div v-if="data.currentTab !== 'oldTransfer'" class="tabs">
-            <input id="radio-1" v-model="data.currentTab" type="radio" value="omo" />
-            <label for="radio-1">{{ $t('omoMember') }}</label>
-            <input id="radio-2" v-model="data.currentTab" type="radio" value="old" />
-            <label for="radio-2">{{ $t('oldMember') }}</label>
+            <input id="tab1" v-model="data.currentTab" type="radio" value="omo" />
+            <label for="tab1">{{ $t('omoMember') }}</label>
+            <input id="tab2" v-model="data.currentTab" type="radio" value="old" />
+            <label for="tab2">{{ $t('oldMember') }}</label>
             <span class="tabs-glider"></span>
           </div>
           <div v-else>

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-useHead({
-  titleTemplate: (titleChunk) => {
-    return titleChunk ? `${titleChunk} - OMO` : 'OMO'
-  },
+const route = useRoute()
+
+const head = useLocaleHead({
+  addSeoAttributes: true,
 })
 
-const route = useRoute()
+console.log('123', head)
 </script>
 
 <template>

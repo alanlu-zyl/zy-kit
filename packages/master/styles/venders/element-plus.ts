@@ -12,7 +12,7 @@ const config: Config = {
       ),
       dialog__header: toLine(
         {
-          '': $`p:4x|4x|0 m:0`,
+          '': $`p:4x|4x|2x m:0`,
         },
         { scope: '#mcss' }
       ),

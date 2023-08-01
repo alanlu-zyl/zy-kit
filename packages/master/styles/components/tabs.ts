@@ -10,10 +10,10 @@ const config: Config = {
         '_input[type="radio"]': $`hide`,
         '>label': $`flex:1 center-content w:$(w) cursor:pointer t:center ~color|.1s|ease-in fg:G-50 text:ellipsis white-space:nowrap overflow:hidden`,
         '_input[type="radio"]:checked+label': $`f:bold fg:B-50`,
-        '_input[id="radio-1"]:checked~.tabs-glider': $`translateX(0)`,
-        '_input[id="radio-2"]:checked~.tabs-glider': $`translateX(100%)`,
-        '_input[id="radio-3"]:checked~.tabs-glider': $`translateX(200%)`,
-        '_input[id="radio-4"]:checked~.tabs-glider': $`translateX(300%)`,
+        '_input[id="tab1"]:checked~.tabs-glider': $`translateX(0)`,
+        '_input[id="tab2"]:checked~.tabs-glider': $`translateX(100%)`,
+        '_input[id="tab3"]:checked~.tabs-glider': $`translateX(200%)`,
+        '_input[id="tab4"]:checked~.tabs-glider': $`translateX(300%)`,
       }),
       glider: {
         '': toLine({

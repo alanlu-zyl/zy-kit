@@ -4,23 +4,37 @@
   "omoMemberTransfer": "OMO 會員轉移",
   "oldMemberTransfer": "舊會員轉移",
   "oldMemberLogin": "舊會員登入",
-  "account": "手機/電子信箱",
-  "phone": "手機",
-  "phoneNumber": "手機號碼",
-  "email": "電子信箱",
-  "omoAccount": "手機/電子信箱/ID",
-  "password": "密碼",
-  "verifyCode": "驗證碼",
-  "getVerifyCode": "取得驗證碼",
-  "sendEmail": "寄至信箱",
-  "nextStep": "下一步",
-  "rememberAccount": "記住帳號",
-  "forgotPassword": "忘記密碼?",
-  "logIn": "登入",
   "proceedToTransfer": "前往轉移",
   "transferInstructions": "轉移說明",
   "joinOMONow": "立即加入OMO會員",
+  "account": "手機/電子信箱",
+  "omoAccount": "手機/電子信箱/ID",
+  "phone": "手機",
+  "phoneNumber": "手機號碼",
+  "email": "電子信箱",
+  "password": "密碼",
+  "rememberAccount": "記住帳號",
+  "verifyCode": "驗證碼",
+  "nextStep": "下一步",
+  "logIn": "登入",
   "cancel": "取消",
   "confirm": "確認",
-  "reconsider": "再考慮"
+  "reconsider": "再考慮",
+  "forgotPassword": {
+    "title": "忘記密碼",
+    "description": "忘記密碼說明",
+    "help": {
+      "phone": "請輸入註冊時的手機號碼，我們將會寄發驗證碼給您，如需協助請洽客服或門市。",
+      "email": "請輸入註冊時的信箱，我們將會寄發重置密碼給您，如需協助請洽客服或門市。"
+    },
+    "sendBtn": {
+      "phone": "取得驗證碼",
+      "email": "發送至信箱"
+    },
+    "sendSuccess": {
+      "phone": "已寄送驗證碼至手機",
+      "email": "已寄送驗證信至電子信箱"
+    },
+    "countdown": "{second} 秒再發送"
+  }
 }

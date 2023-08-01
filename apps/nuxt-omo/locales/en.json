@@ -4,23 +4,37 @@
   "omoMemberTransfer": "OMO Member Transfer",
   "oldMemberTransfer": "Existing Member Transfer",
   "oldMemberLogin": "Existing Member Login",
-  "account": "Phone/Email",
-  "phone": "Phone",
-  "phoneNumber": "Phone Number",
-  "email": "Email",
-  "omoAccount": "Phone/Email/ID",
-  "password": "Password",
-  "verifyCode": "Verify Code",
-  "getVerifyCode": "Get Verify Code",
-  "sendEmail": "Send Email",
-  "nextStep": "Next Step",
-  "rememberAccount": "Remember Account",
-  "forgotPassword": "Forgot Password?",
-  "logIn": "Log In",
   "proceedToTransfer": "Proceed to Transfer",
   "transferInstructions": "Transfer Instructions",
-  "joinOMONow": "Join OMO Now",
+  "joinOMONow": "Join OMO Membership Now",
+  "account": "Mobile/Email",
+  "omoAccount": "Mobile/Email/ID",
+  "phone": "Mobile",
+  "phoneNumber": "Phone Number",
+  "email": "Email",
+  "password": "Password",
+  "rememberAccount": "Remember Account",
+  "verifyCode": "Verification Code",
+  "nextStep": "Next Step",
+  "logIn": "Log In",
   "cancel": "Cancel",
   "confirm": "Confirm",
-  "reconsider": "Reconsider"
+  "reconsider": "Reconsider",
+  "forgotPassword": {
+    "title": "Forgot Password",
+    "description": "Forgot Password description",
+    "help": {
+      "phone": "Please enter the mobile number used during registration. We will send a verification code to you. For assistance, please contact customer service or visit our store.",
+      "email": "Please enter the email address used during registration. We will send a password reset link to you. For assistance, please contact customer service or visit our store."
+    },
+    "sendBtn": {
+      "phone": "Get Verification Code",
+      "email": "Send to Email"
+    },
+    "sendSuccess": {
+      "phone": "Verification code sent to your mobile.",
+      "email": "Verification email sent to your email address."
+    },
+    "countdown": "Resend in {second} seconds"
+  }
 }

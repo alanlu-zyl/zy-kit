@@ -1,10 +1,4 @@
-<script setup lang="ts">
-useHead({
-  titleTemplate: (titleChunk) => {
-    return titleChunk ? `${titleChunk} - OMO` : 'OMO'
-  },
-})
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div>

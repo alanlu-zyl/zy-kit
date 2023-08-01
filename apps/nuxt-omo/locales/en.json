@@ -12,6 +12,7 @@
   "password": "Password",
   "verifyCode": "Verify Code",
   "getVerifyCode": "Get Verify Code",
+  "sendEmail": "Send Email",
   "nextStep": "Next Step",
   "rememberAccount": "Remember Account",
   "forgotPassword": "Forgot Password?",

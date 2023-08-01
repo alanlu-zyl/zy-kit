@@ -10,12 +10,27 @@ const config: Config = {
         },
         { scope: '#mcss' }
       ),
-      // dialog__header: toLine({}),
+      dialog__header: toLine(
+        {
+          '': $`p:4x|4x|0 m:0`,
+        },
+        { scope: '#mcss' }
+      ),
       // dialog__headerbtn: toLine({}),
       // dialog__close: toLine({}),
       // dialog__title: toLine({}),
-      // dialog__body: toLine({}),
-      // dialog__footer: toLine({}),
+      dialog__body: toLine(
+        {
+          '': $`p:2x|4x`,
+        },
+        { scope: '#mcss' }
+      ),
+      dialog__footer: toLine(
+        {
+          '_.btn': $`min-w:100`,
+        },
+        { scope: '#mcss' }
+      ),
     },
   },
 }

@@ -5,14 +5,16 @@ import type { TransitionProps } from 'vue'
 import { createZodPlugin } from '@formkit/zod'
 import { z } from 'zod'
 import { email_phone, email_phone_id } from '@zy-kit/config/formkit/rules'
-import { $, toLine } from '@zy-kit/utils/mcss'
-import { link } from '@zy-kit/master/styles/components/link'
+import { cv_link } from '@zy-kit/master/styles/components/link'
 
 import { Dialog, NuxtLink } from '#components'
 
+// i18n
 const { t } = useI18n()
+// Dialog
 const createDialog = useCommandComponent(Dialog)
 
+// 彈窗-立即加入OMO會員
 let joinOMOModel: ReturnType<typeof createDialog>
 onBeforeMount(() => {
   joinOMOModel = createDialog({
@@ -20,12 +22,7 @@ onBeforeMount(() => {
     showClose: false,
     destroyOnClose: false,
     center: true,
-    class: toLine({
-      '': $`max-w:300`,
-      '>header': $`p:4x|4x|0 m:0`,
-      '>div': $`p:2x|4x!`,
-      '>footer_.btn': $`min-w:100`,
-    }),
+    class: 'max-w:300',
     header: '提示',
     content: '即將離開此頁面並前往燦坤 OMO 會員轉移頁面 https://Tk3c@tt.com/2LlZ1n',
     confirmText: t('proceedToTransfer'),
@@ -35,82 +32,96 @@ onBeforeMount(() => {
   })
 })
 
-interface schemaData {
+interface ISchemaData {
   currentTab: 'omo' | 'old' | 'oldTransfer'
 }
-
-const data = reactive<schemaData>({
+const data = reactive<ISchemaData>({
   currentTab: 'omo',
+})
+
+interface IFormData {
+  account: string
+  password: string
+}
+const formData = reactive<IFormData>({
+  account: '',
+  password: '',
+})
+
+const zodSchema = z.object({
+  account: z.custom((value) => {
+    const formkitNode = { value } as FormKitNode
+    return data.currentTab === 'omo' ? email_phone_id(formkitNode) : email_phone(formkitNode)
+  }),
+  password: z.string().min(6),
+})
+const [zodPlugin, submitHandler] = createZodPlugin(zodSchema, async (_formData) => {
+  await new Promise((resolve) => setTimeout(resolve, 300))
+  if (data.currentTab === 'omo') {
+    ElMessage({ message: 'login success', type: 'success', showClose: true })
+  } else {
+    createDialog({
+      showClose: false,
+      destroyOnClose: false,
+      center: true,
+      class: 'max-w:300',
+      header: t('omoMemberTransfer'),
+      content: '舊版會員帳號將於2023年10月1日起無法使用，請會員們盡快完成帳號轉移，轉移完成可獲得100元折價卷。',
+      cancelText: t('reconsider'),
+      confirmText: t('proceedToTransfer'),
+      onCancel: () => {
+        ElMessage({ message: '導轉~~~', type: 'error', showClose: true })
+      },
+      onConfirm: () => {
+        ElMessage({ message: '導轉~~~', type: 'success', showClose: true })
+      },
+    })
+  }
 })
 
 // 表單相關
 const library = markRaw({
   NuxtLink,
 })
+
 const schema = computed((): FormKitSchemaNode[] => {
   return [
     {
-      $formkit: 'text',
-      name: 'account',
-      label: data.currentTab === 'omo' ? t('omoAccount') : t('account'),
-      validationLabel: data.currentTab === 'omo' ? t('omoAccount') : t('account'),
-      validation: data.currentTab === 'omo' ? 'required|email_phone_id' : 'required|email_phone',
-    },
-    {
-      $formkit: 'password',
-      name: 'password',
-      label: t('password'),
-      validationLabel: t('password'),
-      validation: 'required|length:6',
-    },
-    {
-      $el: 'div',
-      attrs: { class: 'flex ai:start f:14' },
+      $cmp: 'FormKit',
+      props: {
+        type: 'form',
+        actions: false,
+        plugins: [zodPlugin],
+        onSubmit: submitHandler,
+      },
       children: [
-        { $formkit: 'checkbox', name: 'rememberAccount', label: t('rememberAccount'), if: '$currentTab !== "oldTransfer"' },
-        { $cmp: 'NuxtLink', props: { class: 'ml:auto link content:initial!:not(:hover):before fg:gray!', to: '/forgetPassword' }, children: [t('forgotPassword')] },
+        {
+          $formkit: 'text',
+          name: 'account',
+          label: data.currentTab === 'omo' ? t('omoAccount') : t('account'),
+          validationLabel: data.currentTab === 'omo' ? t('omoAccount') : t('account'),
+          validation: `required|${data.currentTab === 'omo' ? 'email_phone_id' : 'email_phone'}`,
+        },
+        {
+          $formkit: 'password',
+          name: 'password',
+          label: t('password'),
+          validationLabel: t('password'),
+          validation: 'required|length:6',
+        },
+        {
+          $el: 'div',
+          attrs: { class: 'flex ai:start f:14' },
+          children: [
+            { $formkit: 'checkbox', name: 'rememberAccount', label: t('rememberAccount'), if: '$currentTab !== "oldTransfer"' },
+            { $cmp: 'NuxtLink', props: { class: 'ml:auto link content:initial!:not(:hover):before fg:gray!', to: '/forgetPassword' }, children: [t('forgotPassword')] },
+          ],
+        },
+        { $formkit: 'submit', classes: { input: 'w:full! mt:8x! f:bold' }, children: [data.currentTab !== 'oldTransfer' ? t('logIn') : t('proceedToTransfer')] },
       ],
     },
-    { $formkit: 'submit', classes: { input: 'w:full! mt:8x! f:bold' }, children: [data.currentTab !== 'oldTransfer' ? t('logIn') : t('proceedToTransfer')] },
   ]
 })
-const [zodPlugin, submitHandler] = createZodPlugin(
-  z.object({
-    account: z.custom((value) => {
-      const formkitNode = { value } as FormKitNode
-      return data.currentTab === 'omo' ? email_phone_id(formkitNode) : email_phone(formkitNode)
-    }),
-    password: z.string().min(6),
-  }),
-  async (formData) => {
-    await new Promise((resolve) => setTimeout(resolve, 300))
-    if (data.currentTab === 'omo') {
-      ElMessage({ message: 'login success', type: 'success', showClose: true })
-    } else {
-      createDialog({
-        showClose: false,
-        destroyOnClose: false,
-        center: true,
-        class: toLine({
-          '': $`max-w:300`,
-          '>header': $`p:4x|4x|0 m:0`,
-          '>div': $`p:2x|4x!`,
-          '>footer_.btn': $`min-w:100`,
-        }),
-        header: t('omoMemberTransfer'),
-        content: '舊版會員帳號將於2023年10月1日起無法使用，請會員們盡快完成帳號轉移，轉移完成可獲得100元折價卷。',
-        cancelText: t('reconsider'),
-        confirmText: t('proceedToTransfer'),
-        onCancel: () => {
-          ElMessage({ message: '導轉~~~', type: 'error', showClose: true })
-        },
-        onConfirm: () => {
-          ElMessage({ message: '導轉~~~', type: 'success', showClose: true })
-        },
-      })
-    }
-  }
-)
 
 // 動畫相關
 const direction: Record<typeof data.currentTab, '>' | '<'> = {
@@ -134,7 +145,7 @@ const transitionBind = computed((): TransitionProps => {
     <CardHeader></CardHeader>
     <div class="pb:10x">
       <!-- 標籤 -->
-      <div class="h:40 flex center-content w:full>div">
+      <div class="mb:6x h:40 flex center-content w:full>div">
         <Transition v-bind="transitionBind">
           <div v-if="data.currentTab !== 'oldTransfer'" class="tabs">
             <input id="radio-1" v-model="data.currentTab" type="radio" value="omo" />
@@ -150,11 +161,7 @@ const transitionBind = computed((): TransitionProps => {
       </div>
 
       <!-- 表單 -->
-      <div class="mt:6x">
-        <FormKit type="form" :actions="false" :plugins="[zodPlugin]" @submit="submitHandler">
-          <FormKitSchema :schema="schema" :data="data" :library="library"></FormKitSchema>
-        </FormKit>
-      </div>
+      <FormKitSchema :schema="schema" :data="data" :library="library"></FormKitSchema>
 
       <!-- <div class="mt:6x flex jc:space-around f:bold t:center mr:0x_svg">
         <button class="btn btn-type--flat flex:1"><Icon name="fb" size="24"></Icon><span>Facebook</span></button>
@@ -186,7 +193,7 @@ const transitionBind = computed((): TransitionProps => {
             <span>為有更好的使用體驗，舊版會員帳號將於2023年10月1日起無法使用，請會員們盡快完成帳號轉移，轉移完成可獲得100元折價卷。</span>
             <br />
             <div class="t:center mt:4x f:16 f:bold">
-              <p :class="link({ color: 'B-50' })" @click="data.currentTab = 'old'">{{ $t('oldMemberLogin') }}</p>
+              <p :class="cv_link({ color: 'B-50' })" @click="data.currentTab = 'old'">{{ $t('oldMemberLogin') }}</p>
             </div>
           </div>
         </Transition>

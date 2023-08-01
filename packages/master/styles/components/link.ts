@@ -2,7 +2,7 @@ import { type Config } from '@master/css'
 import { $, toLine } from '@zy-kit/utils/mcss'
 import cv from 'class-variant'
 
-export const link = cv('link', ({ color }) =>
+export const cv_link = cv('link', ({ color }) =>
   toLine({
     '!': $`fg:${color} {fg:${color}/.8}:hover {fg:${color}/.6}:active`,
   })

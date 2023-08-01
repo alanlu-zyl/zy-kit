@@ -1,127 +1,105 @@
 <script setup lang="ts">
 import type { FormKitNode, FormKitSchemaNode } from '@formkit/core'
+import { getValidationMessages } from '@formkit/validation'
 
 import { createZodPlugin } from '@formkit/zod'
 import { z } from 'zod'
 import { email, phone } from '@zy-kit/config/formkit/rules'
-
-const { form, context } = useFormKitRefs()
 
 definePageMeta({
   layout: 'mobile',
   title: '忘記密碼',
 })
 
+// i18n
 const { t } = useI18n()
 
-interface ISchemaData {
-  currentTab: 'phone' | 'email'
-}
+const currentTab = ref<'phone' | 'email'>('phone')
 
-const data = reactive<ISchemaData>({
-  currentTab: 'phone',
+const text = computed(() => {
+  return {
+    account: currentTab.value === 'phone' ? t('phoneNumber') : t('email'),
+    verifyCode: t('verifyCode'),
+    getCode: currentTab.value === 'phone' ? t('getVerifyCode') : t('sendEmail'),
+    desc: `請輸入註冊時的${currentTab.value === 'phone' ? t('phoneNumber') : t('email')}，我們將會寄發驗證碼給您，如需協助請洽客服或門市。`,
+  }
+})
+const validation = computed(() => {
+  return {
+    account: `required|${currentTab.value === 'phone' ? 'phone' : 'email'}`,
+    verifyCode: 'required|length:6',
+  }
 })
 
-interface IFormData {
-  account: string
-  verifyCode: string
+function sendSMS(node: FormKitNode, e: MouseEvent) {
+  console.log(node, getValidationMessages(node))
+  // 1. formkit
+  const validationMessageMap = getValidationMessages(node)
+  if (validationMessageMap.size > 0) {
+    const message = String([...validationMessageMap.values()][0][0].value)
+    return ElMessage({ message, type: 'error', showClose: true })
+  } else {
+    ElMessage({ message: 'formkit ok', type: 'success', showClose: true })
+    const target = e.target! as HTMLButtonElement
+    target.disabled = true
+    node.props.disabled = true
+    let second = 5
+    const timmer = setInterval(() => {
+      node.props.btnTextNew = `${second}秒再發送`
+      if (second <= 0) {
+        clearInterval(timmer)
+        target.disabled = false
+        node.props.disabled = false
+        node.props.btnTextNew = null
+      }
+      second--
+    }, 1000)
+  }
 }
-const formData = reactive<IFormData>({
-  account: '',
-  verifyCode: '',
-})
 
+const data = reactive({
+  currentTab,
+  text,
+  validation,
+  sendSMS,
+})
+const schema: FormKitSchemaNode[] = [
+  { $formkit: 'textWithBtn', name: 'account', label: '$text.account', validationLabel: '$text.account', validation: '$validation.account', btnText: '$text.getCode', onBtnClick: '$sendSMS' },
+  { $formkit: 'text', name: 'verifyCode', label: '$text.verifyCode', validationLabel: '$text.verifyCode', validation: '$validation.verifyCode', inputmode: 'numeric', autocomplete: 'off' },
+  { $el: 'p', attrs: { class: 'f:14 fg:G-40' }, children: '$text.desc' },
+]
 const zodSchema = z.object({
   account: z.custom((value) => {
     const formkitNode = { value } as FormKitNode
-    return data.currentTab === 'phone' ? phone(formkitNode) : email(formkitNode)
+    return currentTab.value === 'phone' ? phone(formkitNode) : email(formkitNode)
   }),
   verifyCode: z.string().min(6),
 })
-
 const [zodPlugin, submitHandler] = createZodPlugin(zodSchema, async (_formData) => {
   await new Promise((resolve) => setTimeout(resolve, 300))
-  if (data.currentTab === 'phone') {
+  if (currentTab.value === 'phone') {
     ElMessage({ message: 'login success', type: 'success', showClose: true })
   } else {
     //
   }
 })
-
-function sendSMS() {
-  // TODO
-  console.log(form.value!.node.store)
-  try {
-    const account = zodSchema.pick({ account: true }).parse({ account: context.value?.value.account })
-    console.log(account)
-  } catch (error) {
-    ElMessage({ message: error.message, type: 'error', showClose: true })
-  }
-}
-
-const schema = computed((): FormKitSchemaNode[] => {
-  return [
-    {
-      $formkit: 'text',
-      name: 'account',
-      label: data.currentTab === 'phone' ? t('phoneNumber') : t('email'),
-      validationLabel: data.currentTab === 'phone' ? t('phoneNumber') : t('email'),
-      validation: data.currentTab === 'phone' ? 'required|phone' : 'required|email',
-      sectionsSchema: {
-        suffix: {
-          $el: 'div',
-          attrs: { class: "rel {abs-center-y;left:0;content:'';bl:1|G-30;h:70%}::before" },
-          children: [
-            {
-              $el: 'button',
-              attrs: {
-                type: 'button',
-                class: 'btn btn-type--flat r:0! py:3x!',
-                onClick: sendSMS,
-              },
-              children: [t('getVerifyCode')],
-            },
-          ],
-        },
-      },
-    },
-    {
-      $formkit: 'text',
-      name: 'verifyCode',
-      validation: 'required|length:6',
-      inputmode: 'numeric',
-      autocomplete: 'off',
-      label: t('verifyCode'),
-      validationLabel: t('verifyCode'),
-    },
-    {
-      $el: 'p',
-      attrs: {
-        class: 'f:14 fg:G-40',
-      },
-      children: [`請輸入註冊時的${data.currentTab === 'phone' ? t('phoneNumber') : t('email')}，我們將會寄發驗證碼給您，如需協助請洽客服或門市。`],
-    },
-    { $formkit: 'submit', classes: { input: 'w:full! mt:8x! f:bold' }, children: [t('nextStep')] },
-  ]
-})
 </script>
 
 <template>
   <div>
-    <div class="h:40 flex center-content w:full>div">
+    <div class="mb:6x h:40 flex center-content w:full>div">
       <div class="tabs $glider-w:100%">
-        <input id="radio-1" v-model="data.currentTab" type="radio" value="phone" />
+        <input id="radio-1" v-model="currentTab" type="radio" value="phone" />
         <label for="radio-1">{{ $t('phone') }}</label>
-        <input id="radio-2" v-model="data.currentTab" type="radio" value="email" />
+        <input id="radio-2" v-model="currentTab" type="radio" value="email" />
         <label for="radio-2">{{ $t('email') }}</label>
         <span class="tabs-glider"></span>
       </div>
     </div>
     <!-- 表單 -->
-    <div class="mt:6x">
-      <FormKit ref="form" v-model="formData" type="form" :actions="false" :plugins="[zodPlugin]" @submit="submitHandler">
-        <FormKitSchema :schema="schema" :data="data"></FormKitSchema>
-      </FormKit>
-    </div>
+    <FormKit id="form" type="form" :actions="false" :plugins="[zodPlugin]" @sumbit="submitHandler">
+      <FormKitSchema :schema="schema" :data="data"></FormKitSchema>
+      <FormKit type="submit" :classes="{ input: 'w:full! mt:8x! f:bold' }">{{ t('nextStep') }}</FormKit>
+    </FormKit>
   </div>
 </template>

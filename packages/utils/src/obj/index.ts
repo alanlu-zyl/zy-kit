@@ -1,3 +1,6 @@
+export * from './callback'
+export * from './error-msg'
+
 function isObject(obj: any) {
   if (typeof obj !== 'object' || obj === null) return false
   if (typeof Object.getPrototypeOf === 'function') {
@@ -56,15 +59,4 @@ function getDefaultFromProps<T = Record<string, any>>(props: Record<string, any>
   }
 }
 
-type CallbackFunction<T extends any[]> = (...args: T) => void
-
-function setCallback<T extends any[]>(callback: CallbackFunction<T> | undefined, fallback: CallbackFunction<T>): CallbackFunction<T> {
-  return typeof callback === 'function'
-    ? (...args: T) => {
-        callback(...args)
-        fallback(...args)
-      }
-    : fallback
-}
-
-export { isObject, merge, getDefaultFromProps, setCallback }
+export { isObject, merge, getDefaultFromProps }

@@ -1,9 +1,10 @@
-import { createInput, defineFormKitConfig } from '@formkit/vue'
+import { defineFormKitConfig } from '@formkit/vue'
 import { zhTW } from '@formkit/i18n'
-import { createAutoAnimatePlugin, createAutoHeightTextareaPlugin, createFloatingLabelsPlugin } from '@formkit/addons'
+import { createAutoAnimatePlugin, createAutoHeightTextareaPlugin, createFloatingLabelsPlugin, createMultiStepPlugin } from '@formkit/addons'
 
 // import { generateClasses } from '@formkit/themes'
-// import { genesisIcons } from '@formkit/icons'
+import { genesisIcons } from '@formkit/icons'
+
 // import { createProPlugin, inputs } from '@formkit/pro'
 
 import { loadIcon } from '@iconify/vue'
@@ -11,10 +12,10 @@ import { loadIcon } from '@iconify/vue'
 import '@formkit/themes/genesis'
 import '@formkit/addons/css/floatingLabels'
 
-import { email_phone, email_phone_id, phone } from '../formkit/rules'
-import OneTimePassword from '../formkit/OneTimePassword.vue'
+// import '@formkit/addons/css/multistep'
 
-// import { floatingLabelTextInput } from '../formkit/floatingLabelTextInput'
+import { messages, rules } from '../formkit/rules'
+import inputs from '../formkit/inputs'
 
 export default defineFormKitConfig(() => {
   // here we can access `useRuntimeConfig` because
@@ -30,7 +31,7 @@ export default defineFormKitConfig(() => {
     locale: 'zh',
 
     // 圖示
-    // icons: { ...genesisIcons },
+    icons: { ...genesisIcons },
     iconLoader: (name) => {
       return loadIcon(name).then((qq) => {
         console.log(qq)
@@ -41,53 +42,25 @@ export default defineFormKitConfig(() => {
         `
       })
     },
-    rules: { phone, email_phone, email_phone_id },
-
-    messages: {
-      en: {
-        validation: {
-          phone({ name }) {
-            return ` ${name} Please enter a phone number.`
-          },
-          email_phone({ name }) {
-            return ` ${name} Please enter an email or phone number.`
-          },
-          email_phone_id({ name }) {
-            return ` ${name} Please enter an email or phone number or ID.`
-          },
-        },
-      },
-      zh: {
-        validation: {
-          phone({ name }) {
-            return ` ${name} 請輸入手機號碼`
-          },
-          email_phone({ name }) {
-            return ` ${name} 請輸入信箱或手機號碼`
-          },
-          email_phone_id({ name }) {
-            return ` ${name} 請輸入信箱或手機號碼或會員編號`
-          },
-        },
-      },
-    },
 
     plugins: [
       // https://formkit.com/plugins/auto-animate#installation
       createAutoAnimatePlugin(),
       // https://formkit.com/plugins/auto-height-textarea#installation
       createAutoHeightTextareaPlugin(),
+      // https://formkit.com/plugins/multi-step#installation
+      createMultiStepPlugin(),
       // https://formkit.com/plugins/floating-labels#installation
       createFloatingLabelsPlugin({
         useAsDefault: true, // defaults to false
       }),
     ],
 
+    rules,
+    messages,
+
     // https://formkit.com/guides/create-a-custom-input
-    inputs: {
-      otp: createInput(OneTimePassword, { props: ['digits'] }),
-      // floatingLabelTextInput,
-    },
+    inputs,
 
     // https://formkit.com/essentials/styling#using-generateclasses-from-formkitthemes
     config: {

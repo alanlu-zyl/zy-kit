@@ -1,12 +1,5 @@
 {
   "name": "nuxt-demo",
   "private": true,
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "cleanup": "nuxt cleanup",
-    "postinstall": "nuxt prepare"
-  }
+  "scripts": {}
 }

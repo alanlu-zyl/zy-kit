@@ -1,11 +1,5 @@
 <script setup lang="ts">
 const route = useRoute()
-
-const head = useLocaleHead({
-  addSeoAttributes: true,
-})
-
-console.log('123', head)
 </script>
 
 <template>
@@ -16,7 +10,8 @@ console.log('123', head)
           <slot name="title">{{ route.meta.title }}</slot>
         </template>
       </NavBar>
-      <div class="mx:auto p:2x max-w:xl bg:white">
+      <slot name="header" />
+      <div class="p:2x">
         <slot />
       </div>
       <slot name="footer"> </slot>

@@ -1,46 +1,6 @@
 export * from './callback'
 export * from './error-msg'
-
-function isObject(obj: any) {
-  if (typeof obj !== 'object' || obj === null) return false
-  if (typeof Object.getPrototypeOf === 'function') {
-    const prototype = Object.getPrototypeOf(obj)
-    return prototype === Object.prototype || prototype === null
-  }
-  return Object.prototype.toString.call(obj) === '[object Object]'
-}
-
-function merge<T extends object>(...objects: T[]): T {
-  return objects.reduce<T>((result, current) => {
-    if (Array.isArray(current)) {
-      throw new TypeError('Arguments provided to ts-deepmerge must be objects, not arrays.')
-    }
-    Object.keys(current).forEach((key) => {
-      if (['__proto__', 'constructor', 'prototype'].includes(key)) return
-      if (Array.isArray(result[key]) && Array.isArray(current[key])) {
-        result[key] = merge.options.mergeArrays ? Array.from(new Set(result[key].concat(current[key]))) : current[key]
-      } else if (isObject(result[key]) && isObject(current[key])) {
-        result[key] = merge(result[key], current[key])
-      } else {
-        result[key] = current[key]
-      }
-    })
-
-    return result
-  }, {} as T)
-}
-const defaultOptions = { mergeArrays: true }
-merge.options = defaultOptions
-merge.withOptions = (options: { mergeArrays: boolean }, ...objects: any) => {
-  merge.options = { ...defaultOptions, ...options }
-  const result = merge(...objects)
-  merge.options = defaultOptions
-  return result
-}
-
-function hyphenate(str): string {
-  return str.replace(/\B([A-Z])/g, '-$1').toLowerCase()
-}
+export * from './options'
 
 /**
  * 从props配置中获取默认值
@@ -49,7 +9,7 @@ function hyphenate(str): string {
  * @returns
  */
 function getDefaultFromProps<T = Record<string, any>>(props: Record<string, any>, overrideProps: T): T | Record<string, any> {
-  const defaults = Object.entries(props).reduce((temp, [key, value]) => {
+  const defaults = Object.entries(props).reduce<Record<string, any>>((temp, [key, value]) => {
     temp[key] = value?.default
     return temp
   }, {})
@@ -59,4 +19,4 @@ function getDefaultFromProps<T = Record<string, any>>(props: Record<string, any>
   }
 }
 
-export { isObject, merge, getDefaultFromProps }
+export { getDefaultFromProps }

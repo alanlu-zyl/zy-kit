@@ -140,13 +140,7 @@ const transitionBind = computed((): TransitionProps => {
       <!-- 標籤 -->
       <div class="mb:6x h:40 flex center-content w:full>div">
         <Transition v-bind="transitionBind">
-          <div v-if="data.currentTab !== 'oldTransfer'" class="tabs">
-            <input id="tab1" v-model="data.currentTab" type="radio" value="omo" />
-            <label for="tab1">{{ $t('omoMember') }}</label>
-            <input id="tab2" v-model="data.currentTab" type="radio" value="old" />
-            <label for="tab2">{{ $t('oldMember') }}</label>
-            <span class="tabs-glider"></span>
-          </div>
+          <Tabs v-if="data.currentTab !== 'oldTransfer'" v-model="data.currentTab" :tabs="{ omo: $t('omoMember'), old: $t('oldMember') }" glider-width="30%"></Tabs>
           <div v-else>
             <p class="subject f:20 f:bold">{{ $t('oldMemberTransfer') }}</p>
           </div>

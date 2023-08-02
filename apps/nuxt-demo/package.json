@@ -1,5 +1,9 @@
 {
   "name": "nuxt-demo",
   "private": true,
-  "scripts": {}
+  "scripts": {},
+  "devDependencies": {
+    "eslint-config-custom": "workspace:*",
+    "tsconfig": "workspace:*"
+  }
 }

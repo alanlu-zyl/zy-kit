@@ -54,6 +54,12 @@
     "unplugin",
     "viewports",
     "vueuse"
+  ],
+  "favorites.resources": [
+    {
+      "filePath": "node_modules\\@formkit",
+      "group": "Default"
+    }
   ]
 
 }

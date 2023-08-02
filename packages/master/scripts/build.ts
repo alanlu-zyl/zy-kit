@@ -13,7 +13,7 @@ const content = `
 export default ${JSON.stringify(config)}
 `
 
-async function buildFile(content) {
+async function buildFile(content: string) {
   fs.mkdirSync(buildDir, { recursive: true })
   fs.writeFileSync(path, content)
 }

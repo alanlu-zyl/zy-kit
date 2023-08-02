@@ -13,7 +13,6 @@ import modal from './modal'
 import ratio from './ratio'
 import skeleton from './skeleton'
 import table from './table'
-import tabs from './tabs'
 import title from './title'
 
 const components: Record<string, Config> = {
@@ -30,7 +29,6 @@ const components: Record<string, Config> = {
   ratio,
   skeleton,
   table,
-  tabs,
   title,
 }
 

@@ -1,4 +1,4 @@
-import { merge } from '@zy-kit/utils/obj'
+import merge from 'ts-deepmerge'
 import { type Config } from '@master/css'
 
 // Base
@@ -14,7 +14,7 @@ import components from './components/_index'
 import elementPlus from './venders/element-plus'
 import formkit from './venders/formkit'
 
-const mergedConfig = merge<Config>(
+const mergedConfig = merge<Config[]>(
   // Base
   ...Object.values(base),
   // Layouts

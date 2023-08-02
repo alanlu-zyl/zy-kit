@@ -10,5 +10,9 @@
     "preview": "nuxt preview",
     "cleanup": "nuxt cleanup",
     "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "eslint-config-custom": "workspace:*",
+    "tsconfig": "workspace:*"
   }
 }

@@ -8,9 +8,9 @@ const config: Config = {
         '': $`
           box:border rel overflow:hidden
           inline-flex center-content gap:2x
-          p:1x|2x r:2x
-          w:inherit h:inherit
-          f:inherit t:center vertical-align:middle
+          p:3x|4x r:2x
+          f:inherit lh:1
+          t:center vertical-align:middle
           text-transform:inherit text:none white-space:nowrap
           fg:$(fg,inherit) bg:$(bg,inherit) b:1|$(border,G-50/.5)
           ~.2s transition-property:color,background,border-color,box-shadow
@@ -31,7 +31,7 @@ const config: Config = {
         '>*': $`untouchable`,
       }),
       '-noborder': $`
-        b:0 p:calc(1x+1)|calc(2x+1)!
+        b:0 p:calc(3x+1)|calc(4x+1)!
       `,
       '-ripple': $`
         {content:'';untouchable;abs;full;top:$(y,50%);left:$(x,50%);bg:no-repeat;bg:center}::after

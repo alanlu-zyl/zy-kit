@@ -5,7 +5,6 @@ import type { TransitionProps } from 'vue'
 import { createZodPlugin } from '@formkit/zod'
 import { z } from 'zod'
 import { email_phone, email_phone_id } from '@zy-kit/config/formkit/rules'
-import { cv_link } from '@zy-kit/master/styles/components/link'
 
 import { Dialog, NuxtLink } from '#components'
 
@@ -110,7 +109,8 @@ const schema = computed((): FormKitSchemaNode[] => {
             { $cmp: 'NuxtLink', props: { class: 'ml:auto link content:initial!:not(:hover):before fg:gray!', to: localePath('/forgotPassword') }, children: [`${t('forgotPassword.title')}?`] },
           ],
         },
-        { $formkit: 'submit', classes: { input: 'w:full! mt:8x! f:bold' }, children: [data.currentTab !== 'oldTransfer' ? t('logIn') : t('proceedToTransfer')] },
+        { $formkit: 'submit', classes: { input: 'w:full mt:8x! f:bold' }, children: [data.currentTab !== 'oldTransfer' ? t('logIn') : t('proceedToTransfer')] },
+        { $formkit: 'button', classes: { input: 'btn-type--outline w:full f:bold' }, children: [data.currentTab !== 'oldTransfer' ? t('proceedToTransfer') : t('logIn')] },
       ],
     },
   ]
@@ -140,7 +140,7 @@ const transitionBind = computed((): TransitionProps => {
       <!-- 標籤 -->
       <div class="mb:6x h:40 flex center-content w:full>div">
         <Transition v-bind="transitionBind">
-          <Tabs v-if="data.currentTab !== 'oldTransfer'" v-model="data.currentTab" :tabs="{ omo: $t('omoMember'), old: $t('oldMember') }" glider-width="30%"></Tabs>
+          <Tabs v-if="data.currentTab !== 'oldTransfer'" v-model="data.currentTab" :tabs="{ omo: $t('omoMember'), old: $t('oldMember') }" :glider="{ width: '30%', bg: 'none' }"></Tabs>
           <div v-else>
             <p class="subject f:20 f:bold">{{ $t('oldMemberTransfer') }}</p>
           </div>
@@ -150,40 +150,23 @@ const transitionBind = computed((): TransitionProps => {
       <!-- 表單 -->
       <FormKitSchema :schema="schema" :data="data" :library="library"></FormKitSchema>
 
-      <!-- <div class="mt:6x flex jc:space-around f:bold t:center mr:0x_svg">
-        <button class="btn btn-type--flat flex:1"><Icon name="fb" size="24"></Icon><span>Facebook</span></button>
-        <span class="bl:1|G-20"></span>
-        <button class="btn btn-type--flat flex:1"><Icon name="line" size="24"></Icon><span>Line</span></button>
-      </div> -->
+      <Transition v-bind="transitionBind">
+        <div v-if="data.currentTab === 'old'" class="mt:6x flex jc:space-around f:bold t:center mr:0x_svg">
+          <button class="btn btn-type--flat flex:1"><Icon name="fb" size="24"></Icon><span>Facebook</span></button>
+          <span class="bl:1|G-20"></span>
+          <button class="btn btn-type--flat flex:1"><Icon name="line" size="24"></Icon><span>Line</span></button>
+        </div>
+        <div v-else></div>
+      </Transition>
 
       <!-- 說明 -->
       <div class="mt:6x f:14 fg:G-40">
-        <Transition v-bind="transitionBind">
-          <div v-if="data.currentTab === 'omo'">
-            <span>
-              還不是會員?
-              <NuxtLink class="link fg:Y-50! f:bold" @click="joinOMOModel.open()">{{ $t('joinOMONow') }}</NuxtLink>
-            </span>
-            <br />
-            <span>
-              如果是舊燦坤會員請先前往<NuxtLink class="link fg:Y-50! f:bold" @click.prevent="data.currentTab = 'oldTransfer'">{{ $t('oldMemberTransfer') }}</NuxtLink>
-            </span>
-            <br />
-            <span>舊會員帳號將於2023年10月1日停止登入，轉移完成可獲得100元折價卷。</span>
-          </div>
-          <div v-else-if="data.currentTab === 'old'">
-            <span>為有更好的使用體驗，舊版會員帳號將於2023年10月1日起無法使用，請會員們盡快完成帳號轉移，轉移完成可獲得100元折價卷。</span>
-            <br />
-            <NuxtLink class="link fg:Y-50! f:bold" @click.prevent="data.currentTab = 'oldTransfer'">{{ $t('oldMemberTransfer') }}</NuxtLink>
-          </div>
-          <div v-else-if="data.currentTab === 'oldTransfer'">
-            <span>為有更好的使用體驗，舊版會員帳號將於2023年10月1日起無法使用，請會員們盡快完成帳號轉移，轉移完成可獲得100元折價卷。</span>
-            <br />
-            <div class="t:center mt:4x f:16 f:bold">
-              <p :class="cv_link({ color: 'B-50' })" @click="data.currentTab = 'old'">{{ $t('oldMemberLogin') }}</p>
-            </div>
-          </div>
-        </Transition>
+        <span>
+          還不是會員?
+          <NuxtLink class="link fg:Y-50! f:bold" @click="joinOMOModel.open()">{{ $t('joinOMONow') }}</NuxtLink>
+        </span>
+        <br />
+        <span>為有更好的使用體驗，舊版會員帳號將於2023年10月1日停止登入，請先前往燦坤舊會員轉移，轉移完成可獲得100元折價卷。</span>
       </div>
     </div>
   </div>

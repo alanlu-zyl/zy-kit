@@ -13,16 +13,6 @@ const config: Config = {
         },
         { scope: '#mcss' }
       ),
-      input: {
-        '': toLine(
-          {
-            '': $`r:1x`,
-            '[data-type="button"]_': $`r:2x bg:Y-50 {bg:Y-50/.9}:hover {bg:Y-50/.8}:active`,
-            '[data-type="submit"]_': $`r:2x bg:Y-50 {bg:Y-50/.9}:hover {bg:Y-50/.8}:active`,
-          },
-          { scope: '#mcss' }
-        ),
-      },
       'prefix-icon': {
         '': toLine(
           {

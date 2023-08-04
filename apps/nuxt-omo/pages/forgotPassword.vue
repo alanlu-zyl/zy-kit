@@ -84,9 +84,13 @@ const validation = computed(() => {
   }[formData.currentTab]
 })
 
+const schemaData = reactive({
+  currentTab: formData.currentTab,
+  text,
+  validation,
+  sendVerifyCode,
+})
 function sendVerifyCode(node: FormKitNode, e: MouseEvent) {
-  // e.preventDefault()
-
   const validationMessageMap = getValidationMessages(node)
   if (validationMessageMap.size > 0) {
     const message = String([...validationMessageMap.values()][0][0].value)
@@ -95,7 +99,7 @@ function sendVerifyCode(node: FormKitNode, e: MouseEvent) {
 
   const target = e.target! as HTMLButtonElement
   target.disabled = true
-  // node.props.disabled = true
+  node.props.disabled = true
   let second = 5
 
   node.props.btnTextNew = t('forgotPassword.countdown', { second })
@@ -105,7 +109,7 @@ function sendVerifyCode(node: FormKitNode, e: MouseEvent) {
     if (second < 0) {
       clearInterval(timmer)
       target.disabled = false
-      // node.props.disabled = false
+      node.props.disabled = false
       node.props.btnTextNew = null
     }
   }, 1000)
@@ -120,12 +124,6 @@ function sendVerifyCode(node: FormKitNode, e: MouseEvent) {
   }
 }
 
-const schemaData = reactive({
-  currentTab: formData.currentTab,
-  text,
-  validation,
-  sendVerifyCode,
-})
 const schema = computed<FormKitSchemaNode[]>(() => {
   return {
     [typeEnum.Enum.phone]: [
@@ -153,7 +151,7 @@ const schema = computed<FormKitSchemaNode[]>(() => {
 })
 
 const [zodPlugin, submitHandler] = createZodPlugin(zodSchema, async (_formData) => {
-  await new Promise((resolve) => setTimeout(resolve, 300))
+  await new Promise((resolve) => setTimeout(resolve, 3000))
   switch (formData.currentTab) {
     case typeEnum.Enum.phone:
       ElMessage({ message: 'phone success', type: 'success', showClose: true })

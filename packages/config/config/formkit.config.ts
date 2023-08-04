@@ -2,7 +2,7 @@ import { defineFormKitConfig } from '@formkit/vue'
 import { zhTW } from '@formkit/i18n'
 import { createAutoAnimatePlugin, createAutoHeightTextareaPlugin, createFloatingLabelsPlugin, createMultiStepPlugin } from '@formkit/addons'
 
-// import { generateClasses } from '@formkit/themes'
+import { generateClasses } from '@formkit/themes'
 import { genesisIcons } from '@formkit/icons'
 
 // import { createProPlugin, inputs } from '@formkit/pro'
@@ -65,6 +65,17 @@ export default defineFormKitConfig(() => {
     // https://formkit.com/essentials/styling#using-generateclasses-from-formkitthemes
     config: {
       // classes: generateClasses(mcssTheme),
+      classes: generateClasses({
+        global: {
+          inner: 'user-select:none',
+        },
+        submit: {
+          input: '$reset btn btn-type--theme',
+        },
+        button: {
+          input: '$reset btn',
+        },
+      }),
     },
   }
 })

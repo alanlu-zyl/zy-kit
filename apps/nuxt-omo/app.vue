@@ -3,6 +3,7 @@ import type { DefaultConfigOptions } from '@formkit/vue'
 
 // i18n
 const { locale } = useI18n()
+const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
 const config: DefaultConfigOptions = inject(Symbol.for('FormKitConfig'))!
 watch(locale, (newVal) => {
@@ -62,10 +63,23 @@ const route = useRoute()
 :root {
   --zh-font-family: 'Noto Sans TC';
   --en-font-family: 'Inter';
-  --fk-font-family: var(--zh-font-family), var(--en-font-family);
+  --font-family: var(--zh-font-family), var(--en-font-family);
+
+  /** Vender - formkit */
+  --fk-font-family: var(--font-family);
+  --fk-color-primary: grey;
 }
 
 body {
-  font-family: var(--zh-font-family), var(--en-font-family);
+  font-family: var(--font-family);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+input[data-autocompleted] {
+  background-color: transparent;
 }
 </style>
